@@ -29,51 +29,108 @@ export default function NavigationBar() {
   return (
     <Navbar bg="light" variant="light">
       <Container className="navContainer">
-        <span>
-          <div className="logo">
-            <Navbar.Brand href="#home">
-              <img
-                src={Bandcamp}
-                width="100px"
-                height="40px"
-                className="d-inline-block align-top"
-                alt="Bandcamp logo"
-              />
-            </Navbar.Brand>
-          </div>
-          <p>Discover how great is to make a site for music in React</p>
-        </span>
+        <div className="logo">
+          <Navbar.Brand href="#home">
+            <img
+              src={Bandcamp}
+              width="100px"
+              height="40px"
+              className="d-inline-block align-top"
+              alt="Bandcamp logo"
+            />
+          </Navbar.Brand>
+        </div>
+        <div className="search">
+          <form method="post">
+            <input
+              type="text"
+              name="subject"
+              class="bandcampSearch"
+              value=""
+              placeholder="Search"
+            />
+          </form>
+        </div>
 
-        <span>
-          <div className="search">
-            <form method="post">
-              <input
-                type="text"
-                name="subject"
-                class="bandcampSearch"
-                value=""
-                placeholder="Search"
-              />
-            </form>
-          </div>
-
-          {/* <Nav as={Link} onClick={handleShow}>
+        {/* <Nav as={Link} onClick={handleShow}>
             Signup
           </Nav> */}
-
-          <span onClick={handleShow}>Setup</span>
-
-          <a href="#">
-            <span>Login</span>
-          </a>
-        </span>
+        <div className="setlog">
+          <span onClick={handleShow}>
+            <a href="#">Setup</a>
+          </span>
+          {"         "}
+          <span onClick={handleShow}>
+            <a href="#">Login</a>
+          </span>
+        </div>
         {/* <Nav className="mr-auto">
           <Nav.Link href="#home">Signup</Nav.Link>
           <Nav.Link href="#features">Login</Nav.Link>
           <Nav.Link href="#pricing">Pricing</Nav.Link>
         </Nav> */}
 
-        <Modal centered show={show} onHide={handleClose}>
+        <Modal
+          className="signupModal"
+          centered
+          show={show}
+          onHide={handleClose}
+        >
+          <div style={{ backgroundColor: "white" }}>
+            <Modal.Header closeButton>
+              <Modal.Title>Signup</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form onSubmit={(e) => handleSubmit(e)}>
+                <Form.Group className="mb-2">
+                  <Form.Control
+                    type="email"
+                    placeholder="Enter email"
+                    value="" //email
+                    onChange=""
+                  />
+                </Form.Group>
+                <Form.Group className="mb-2">
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    value="" //password
+                    onChange=""
+                  />
+                </Form.Group>
+                {/* <Alert variant="danger"></Alert>
+                <button type="submit" className="w-100 LoginBnt mt-2">
+                  Log In
+                </button> */}
+              </Form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button
+                /* type="submit" */ variant="primary"
+                onClick={handleClose}
+              >
+                Signup as fan
+              </Button>
+              <Button
+                /* type="submit" */ variant="success"
+                onClick={handleClose}
+              >
+                Signup as artist
+              </Button>
+              <Button
+                /* type="submit" */ variant="warning"
+                onClick={handleClose}
+              >
+                Signup as artist
+              </Button>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+            </Modal.Footer>
+          </div>
+        </Modal>
+
+        <Modal className="loginModal" centered show={show} onHide={handleClose}>
           <div style={{ backgroundColor: "white" }}>
             <Modal.Header closeButton>
               <Modal.Title>Signup</Modal.Title>
