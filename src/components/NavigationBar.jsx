@@ -12,6 +12,7 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Bandcamp from "../assets/bandcamp.svg";
+import ModalIntro from "../components/ModalIntro";
 
 export default function NavigationBar() {
   const [show, setShow] = useState(false);
