@@ -13,13 +13,15 @@ import {
 import { Link } from "react-router-dom";
 import Bandcamp from "../assets/bandcamp.svg";
 import ModalIntro from "../components/ModalIntro";
+import { registerUser } from "../api/userApi";
+import { useHistory } from "react-router-dom";
 
-export default function NavigationBar() {
-  const [show, setShow] = useState(false);
+export default function NavigationBar({ handleShow, handleClose }) {
   const [loading, setLoading] = useState(false);
+  const [showSignup, setShowSignup] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleSignupOff = () => setShowSignup(false);
+  const handleSignupOn = () => setShowSignup(true);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,6 +29,30 @@ export default function NavigationBar() {
     /* handleClose();
     setLoading(false); */
   };
+
+  const history = useHistory();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
+
+  const register = async (e) => {
+    e.preventDefault(e);
+
+    const resp = await registerUser({
+      email,
+      password,
+      role,
+    });
+    if (resp.status === 201) {
+      localStorage.setItem("LoggedIn", true);
+      //history.push("/home");
+    } else {
+      alert("something went wrong");
+    }
+  };
+
+  console.log({ handleShow });
+
   return (
     <Navbar bg="light" variant="light">
       <Container className="navContainer">
@@ -57,120 +83,51 @@ export default function NavigationBar() {
             Signup
           </Nav> */}
         <div className="setlog">
-          <span onClick={handleShow}>
-            <a href="#">Setup</a>
+          <span style={{ cursor: "pointer" }} onClick={handleShow}>
+            Setup
           </span>
           {"         "}
-          <span onClick={handleShow}>
-            <a href="#">Login</a>
+          <span style={{ cursor: "pointer" }} onClick={handleShow}>
+            Login
           </span>
         </div>
-        {/* <Nav className="mr-auto">
-          <Nav.Link href="#home">Signup</Nav.Link>
-          <Nav.Link href="#features">Login</Nav.Link>
-          <Nav.Link href="#pricing">Pricing</Nav.Link>
-        </Nav> */}
 
-        <Modal
-          className="signupModal"
+        <Form
+          className="modalIntro"
           centered
-          show={show}
-          onHide={handleClose}
+          /* show={showSignup}
+            onHide={handleSignupOff} */
+          onSubmit={register}
         >
-          <div style={{ backgroundColor: "white" }}>
-            <Modal.Header closeButton>
-              <Modal.Title>Signup</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <Form onSubmit={(e) => handleSubmit(e)}>
-                <Form.Group className="mb-2">
-                  <Form.Control
-                    type="email"
-                    placeholder="Enter email"
-                    value="" //email
-                    onChange=""
-                  />
-                </Form.Group>
-                <Form.Group className="mb-2">
-                  <Form.Control
-                    type="password"
-                    placeholder="Password"
-                    value="" //password
-                    onChange=""
-                  />
-                </Form.Group>
-                {/* <Alert variant="danger"></Alert>
-                <button type="submit" className="w-100 LoginBnt mt-2">
-                  Log In
-                </button> */}
-              </Form>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button
-                /* type="submit" */ variant="primary"
-                onClick={handleClose}
-              >
-                Signup as fan
-              </Button>
-              <Button
-                /* type="submit" */ variant="success"
-                onClick={handleClose}
-              >
-                Signup as artist
-              </Button>
-              <Button
-                /* type="submit" */ variant="warning"
-                onClick={handleClose}
-              >
-                Signup as artist
-              </Button>
-              <Button variant="secondary" onClick={handleClose}>
-                Close
-              </Button>
-            </Modal.Footer>
-          </div>
-        </Modal>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              value={email}
+              onChange={(e) => setEmail(e.currentTarget.value)}
+            />
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
 
-        <Modal className="loginModal" centered show={show} onHide={handleClose}>
-          <div style={{ backgroundColor: "white" }}>
-            <Modal.Header closeButton>
-              <Modal.Title>Signup</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <Form onSubmit={(e) => handleSubmit(e)}>
-                <Form.Group className="mb-2">
-                  <Form.Control
-                    type="email"
-                    placeholder="Enter email"
-                    value="" //email
-                    onChange=""
-                  />
-                </Form.Group>
-                <Form.Group className="mb-2">
-                  <Form.Control
-                    type="password"
-                    placeholder="Password"
-                    value="" //password
-                    onChange=""
-                  />
-                </Form.Group>
-                {/* <Alert variant="danger"></Alert>
-                <button type="submit" className="w-100 LoginBnt mt-2">
-                  Log In
-                </button> */}
-
-                <Button type="submit" variant="primary" onClick={handleClose}>
-                  Signup
-                </Button>
-              </Form>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Close
-              </Button>
-            </Modal.Footer>
-          </div>
-        </Modal>
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.currentTarget.value)}
+            />
+          </Form.Group>
+          <Form.Group controlId="formBasicCheckbox">
+            <Form.Check type="checkbox" label="Check me out" />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
       </Container>
     </Navbar>
   );
