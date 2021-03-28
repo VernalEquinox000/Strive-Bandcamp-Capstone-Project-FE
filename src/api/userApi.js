@@ -1,19 +1,27 @@
 import axios from "axios";
+export const signup = async (data) => {
+  const config = {
+    headers: {
+      "Content-type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
+  };
 
-export const registerUser = async (email, password, role) => {
   try {
     const response = await axios.post(
       `${process.env.REACT_APP_BE_URL}/users/signup`,
-      email,
-      password,
-      role,
-      {
-        headers: { "Content-Type": "application/json" },
-      }
+      data,
+      config
     );
-    console.log(response);
-    return response;
+
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      return response.data;
+    }
   } catch (error) {
-    console.log(error);
+    console.log("Error in signup fetching", error);
+    console.log("error response data", error.response.data);
+    return error.response.data;
   }
 };

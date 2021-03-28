@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-import { registerUser } from "../api/userApi";
+import { signup } from "../api/userApi";
 import { useHistory } from "react-router-dom";
 import axios from "axios"; //copied
 
 export default function ModalIntro({ show, handleClose }) {
   const [loading, setLoading] = useState(false);
-
   const [userType, setUserType] = useState("");
 
   const handleSubmit = async (e) => {
@@ -22,24 +21,13 @@ export default function ModalIntro({ show, handleClose }) {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
 
-  const register = async (e) => {
-    e.preventDefault(e);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    role: "",
+  });
 
-    const resp = await registerUser({
-      email,
-      password,
-      role,
-    });
-    console.log(email);
-    console.log(password);
-    console.log(resp);
-    /* if (resp.status === 201) {
-      localStorage.setItem("LoggedIn", true);
-      //history.push("/home");
-    } else {
-      alert("something went wrong");
-    } */
-  };
+  const { email, password, role } = formData;
 
   return (
     <div>
