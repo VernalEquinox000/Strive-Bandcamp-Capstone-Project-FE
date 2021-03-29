@@ -59,7 +59,7 @@ export default function NavigationBar({ handleShow, handleClose }) {
           </Nav> */}
         <div className="setlog">
           <span style={{ cursor: "pointer" }} onClick={handleShow}>
-            Setup
+            Signup
           </span>
           {"         "}
           <span style={{ cursor: "pointer" }} onClick={handleShow}>

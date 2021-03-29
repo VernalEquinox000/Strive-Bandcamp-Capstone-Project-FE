@@ -1,33 +1,12 @@
 import React, { useState } from "react";
-import { Modal, Button, Form } from "react-bootstrap";
+import { Modal, Button, Form, Row, Col } from "react-bootstrap";
 import { signup } from "../api/userApi";
-import { useHistory } from "react-router-dom";
-import axios from "axios"; //copied
+//import { useHistory } from "react-router-dom";
+import { Formik, Field } from "formik";
 
 export default function ModalIntro({ show, handleClose }) {
   const [loading, setLoading] = useState(false);
   const [userType, setUserType] = useState("");
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    /* handleClose();
-    setLoading(false); */
-  };
-
-  //registration
-  //const history = useHistory();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
-
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    role: "",
-  });
-
-  const { email, password, role } = formData;
 
   return (
     <div>
@@ -42,62 +21,76 @@ export default function ModalIntro({ show, handleClose }) {
               <Button variant="primary" onClick={() => setUserType("fan")}>
                 Signup as fan
               </Button>
+              {"    "}
               <Button variant="success" onClick={() => setUserType("artist")}>
                 Signup as artist
               </Button>
-              <Button variant="warning" onClick={() => setUserType("label")}>
-                Signup as label
-              </Button>
-              <Button variant="secondary">Close</Button>
             </Modal.Body>
           ) : (
             <div>
-              {userType}
-              <Form
-                className="modalIntro"
-                centered
-                /* show={showSignup}
-            onHide={handleSignupOff} */
-                onSubmit={register}
+              Signin up as: {userType}
+              <Formik
+                initialValues={{
+                  email: "",
+                  password: "",
+                  role: userType,
+                }}
+                onSubmit={async (data, { setSubmitting, resetForm }) => {
+                  try {
+                    setSubmitting(true);
+                    const response = await signup(data);
+                    if (response.status === 201) {
+                      const data = response.data;
+                      console.log(data);
+                      setSubmitting(false);
+                      resetForm();
+                    }
+                  } catch (error) {
+                    console.log(error.response.data);
+                  }
+                }}
               >
-                <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Email address</Form.Label>
-                  <Form.Control
-                    type="email"
-                    placeholder="Enter email"
-                    value={email}
-                    onChange={(e) => setEmail(e.currentTarget.value)}
-                  />
-                  <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
-                  </Form.Text>
-                </Form.Group>
-
-                <Form.Group controlId="formBasicPassword">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.currentTarget.value)}
-                  />
-                </Form.Group>
-                {/* <Form.Group controlId="formBasicCheckbox">
-                  <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group> */}
-                <Form.Group controlId="formRole">
-                  <Form.Label>Role</Form.Label>
-                  <Form.Control
-                    type="role"
-                    placeholder="Role"
-                    value={role}
-                    onChange={(e) => setRole(e.currentTarget.value)}
-                  />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                  Submit
-                </Button>
-              </Form>
+                {({ values, isSubmitting, handleSubmit }) => (
+                  <Form onSubmit={handleSubmit}>
+                    <Form.Row>
+                      <Form.Group as={Col}>
+                        <Form.Label>Email</Form.Label>
+                        <Field
+                          placeholder="Type your email"
+                          name="email"
+                          type="email"
+                          as={Form.Control}
+                        />
+                      </Form.Group>
+                    </Form.Row>
+                    <Form.Row>
+                      <Form.Group as={Col}>
+                        <Form.Label>Password</Form.Label>
+                        <Field
+                          placeholder="Type your password"
+                          name="password"
+                          type="password"
+                          as={Form.Control}
+                        />
+                      </Form.Group>
+                    </Form.Row>
+                    {/* <Form.Row>
+                      <Form.Group as={Col} sm="5">
+                        <Form.Label>Role</Form.Label>
+                        <Field
+                          placeholder="Type your role"
+                          name="role"
+                          type="text"
+                          as={Form.Control}
+                        />
+                      </Form.Group>
+                    </Form.Row> */}
+                    <Button disabled={isSubmitting} type="submit">
+                      Register
+                    </Button>
+                  </Form>
+                )}
+              </Formik>
             </div>
           )}
 
