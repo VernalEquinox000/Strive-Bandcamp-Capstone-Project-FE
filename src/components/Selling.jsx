@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
 export default function Selling() {
+  //const [loading, setLoading] = useState(false);
+  const [albumId, setAlbumId] = useState("");
+  const [albumTitle, setAlbumTitle] = useState("");
+  const [albumCover, setAlbumCover] = useState(
+    "https://via.placeholder.com/100x100.png"
+  );
   return (
     <div>
       <Container fluid>
