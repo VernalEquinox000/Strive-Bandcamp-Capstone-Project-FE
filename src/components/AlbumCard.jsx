@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import React from "react";
+import { Col, Card, Button } from "react-bootstrap";
 
 export default function AlbumCard() {
   /* const [loading, setLoading] = useState(false);
