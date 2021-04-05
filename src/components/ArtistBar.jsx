@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import {
-  Navbar,
+  
   Container,
   Row,
   Nav,
@@ -10,11 +10,8 @@ import {
   Modal,
   Button,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import Bandcamp from "../assets/bandcamp.svg";
-import ModalIntro from "../components/ModalIntro";
 
-export default function ArtistBar() {
+export default function ArtistBar({Header}) {
     return (
         <div>
             <Container>
