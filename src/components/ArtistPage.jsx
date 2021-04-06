@@ -4,6 +4,7 @@ import ArtistBar from "./ArtistBar";
 import { getUserById } from "../api/userApi";
 import { useParams } from "react-router-dom";
 import ArtistAlbumGallery from "./ArtistAlbumGallery";
+import ArtistSidePanel from "./ArtistSidePanel";
 export default function Artist() {
   const matchParams = useParams();
   const [artist, setArtist] = useState(null);
@@ -31,7 +32,22 @@ export default function Artist() {
     <div>
       <ArtistBar header={artist && artist.headerPic} />
       <Container>
-        <ArtistAlbumGallery albums={artist && artist.albums} />
+        <Row>
+          <Col lg={10}>
+            <ArtistAlbumGallery albums={artist && artist.albums} />
+          </Col>
+        </Row>
+        <Row>
+          <Col lg={2}>
+            {artist && (
+              <ArtistSidePanel
+                pic={artist.profilePic}
+                name={artist.artistName}
+                desc={artist.description}
+              />
+            )}
+          </Col>
+        </Row>
       </Container>
     </div>
   );
