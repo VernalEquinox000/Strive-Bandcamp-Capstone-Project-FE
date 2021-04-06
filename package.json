@@ -3,28 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.9",
-    "@testing-library/react": "^11.2.5",
-    "@testing-library/user-event": "^12.8.3",
-    "@types/bootstrap": "^5.0.11",
-    "@types/jest": "^26.0.21",
-    "@types/node": "^14.14.35",
-    "@types/react": "^17.0.3",
-    "@types/react-bootstrap": "^0.32.25",
-    "@types/react-dom": "^17.0.2",
-    "@types/react-router-dom": "^5.1.7",
     "axios": "^0.21.1",
     "axios-auth-refresh": "^3.1.0",
     "bootstrap": "^4.6.0",
+    "formik": "^2.2.6",
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.2",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0",
-    "typescript": "^4.2.3",
     "web-vitals": "^1.1.1"
   },
   "scripts": {
@@ -50,10 +38,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@types/react-redux": "^7.1.16",
-    "@types/redux": "^3.6.0",
-    "@types/redux-thunk": "^2.1.0"
   }
 }
