@@ -12,7 +12,10 @@ export default function Selling() {
     <div>
       <Container fluid>
         <Row>
-          <Link to={`/users/606b7e9a1c2e4735a3988a1d`} activeClassName="active">
+          <Link
+            to={`/artist/606b7e9a1c2e4735a3988a1d`}
+            activeClassName="active"
+          >
             <Col>
               <Card style={{ width: "12rem" }}>
                 <Card.Img
