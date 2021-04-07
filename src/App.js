@@ -1,15 +1,27 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import NavigationBar from "./components/NavigationBar";
-import Jumbo from "./components/Jumbo";
-import Selling from "./components/Selling";
+import Home from "./components/Home";
+import ModalIntro from "./components/ModalIntro";
+import ArtistPage from "./components/ArtistPage";
+import AlbumPage from "./components/AlbumPage";
+import { useState } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 function App() {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <div className="App">
-      <NavigationBar />
-      <Jumbo />
-      <Selling />
+      <Router>
+        <NavigationBar handleShow={handleShow} />
+        <ModalIntro show={show} handleClose={handleClose} />
+        <Route path="/" exact component={Home} />
+        <Route path="/artist/:id" exact component={ArtistPage} />
+        <Route path="/album/:id" exact component={AlbumPage} />
+      </Router>
     </div>
   );
 }
