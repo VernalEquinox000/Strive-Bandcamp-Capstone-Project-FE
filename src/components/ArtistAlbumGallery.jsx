@@ -18,7 +18,7 @@ export default function AlbumAlbumGallery({ albums }) {
           :  */ albums &&
           albums.map((album) => (
             <>
-              <Link to="/album/606b829a1c2e4735a3988a1e">
+              <Link to="/artist/606b7e9a1c2e4735a3988a1d/album/606b829a1c2e4735a3988a1e">
                 <Image
                   style={{ width: "200px" }}
                   key={album._id}
