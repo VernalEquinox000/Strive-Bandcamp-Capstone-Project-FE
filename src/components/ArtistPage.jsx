@@ -5,7 +5,7 @@ import { getUserById } from "../api/userApi";
 import { useParams } from "react-router-dom";
 import ArtistAlbumGallery from "./ArtistAlbumGallery";
 import ArtistSidePanel from "./ArtistSidePanel";
-export default function Artist() {
+export default function ArtistPage() {
   const matchParams = useParams();
   const [artist, setArtist] = useState(null);
   const [headerPic, setHeaderPic] = useState("");
@@ -29,26 +29,28 @@ export default function Artist() {
   }, []);
 
   return (
-    <div>
-      <ArtistBar header={artist && artist.headerPic} />
-      <Container>
-        <Row>
-          <Col lg={10}>
-            <ArtistAlbumGallery albums={artist && artist.albums} />
-          </Col>
-        </Row>
-        <Row>
-          <Col lg={2}>
-            {artist && (
+    artist && (
+      <div>
+        <ArtistBar key={artist._id} header={artist.headerPic} />
+        <Container className="d-flex flex-column justify-content-center align-content-center">
+          <Row
+            Row
+            className="row-cols-1 row-cols-sm-2 row-cols-lg-4 mb-4 text-left"
+          >
+            <Col xl={9}>
+              <ArtistAlbumGallery albums={artist.albums} />
+            </Col>
+            <Col xl={3}>
               <ArtistSidePanel
                 pic={artist.profilePic}
                 name={artist.artistName}
                 desc={artist.description}
+                link={artist.url[0]}
               />
-            )}
-          </Col>
-        </Row>
-      </Container>
-    </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    )
   );
 }
