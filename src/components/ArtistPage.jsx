@@ -17,8 +17,6 @@ export default function ArtistPage() {
     console.log(data);
     setArtist(data);
     console.log(artist);
-    artist && console.log(artist.albums[0].cover);
-    artist && console.log(artist.albums[0].title);
     /* } else {
       alert("something went wrong");
     } */
@@ -38,7 +36,7 @@ export default function ArtistPage() {
             className="row-cols-1 row-cols-sm-2 row-cols-lg-4 mb-4 text-left"
           >
             <Col xl={9}>
-              <ArtistAlbumGallery albums={artist.albums} />
+              <ArtistAlbumGallery artist={artist} />
             </Col>
             <Col xl={3}>
               <ArtistSidePanel
