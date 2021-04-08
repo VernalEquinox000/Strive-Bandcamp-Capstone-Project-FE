@@ -20,7 +20,11 @@ function App() {
         <ModalIntro show={show} handleClose={handleClose} />
         <Route path="/" exact component={Home} />
         <Route path="/artist/:id" exact component={ArtistPage} />
-        <Route path="/album/:id" exact component={AlbumPage} />
+        <Route
+          path="/artist/:artistId/album/:albumId"
+          exact
+          component={AlbumPage}
+        />
       </Router>
     </div>
   );

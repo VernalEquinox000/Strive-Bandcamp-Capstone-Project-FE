@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import ArtistBar from "./ArtistBar";
 import { getAlbumById } from "../api/albumApi";
+import { getUserById } from "../api/userApi";
 import { useParams } from "react-router-dom";
 import ArtistSidePanel from "./ArtistSidePanel";
 export default function AlbumPage() {
@@ -10,7 +11,7 @@ export default function AlbumPage() {
   const [album, setAlbum] = useState(null);
 
   const fetchAlbum = async (id) => {
-    const response = await getAlbumById(matchParams.id);
+    const response = await getAlbumById(matchParams.albumId);
     /* if (response.statusText === "OK") { */
     const data = await response.data;
     console.log(data);
@@ -23,14 +24,25 @@ export default function AlbumPage() {
     } */
   };
 
+  const fetchUser = async (id) => {
+    const response = await getUserById(matchParams.artistId);
+    /* if (response.statusText === "OK") { */
+    const data = await response.data;
+    console.log(data);
+    setArtist(data);
+    console.log(artist);
+  };
+
   useEffect(() => {
-    fetchAlbum(matchParams.id);
+    fetchAlbum(matchParams.albumId);
+    fetchUser(matchParams.artistId);
   }, []);
 
   return (
+    artist &&
     album && (
       <div>
-        <ArtistBar /* key={artist._id} header={artist.headerPic} */ />
+        <ArtistBar key={artist._id} header={artist.headerPic} />
         <Container className="d-flex flex-column justify-content-center align-content-center">
           <Row
             Row
