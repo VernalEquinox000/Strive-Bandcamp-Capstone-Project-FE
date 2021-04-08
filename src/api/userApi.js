@@ -24,3 +24,12 @@ export const getUserById = async (id) => {
     console.log(error);
   }
 };
+
+export const getAllUsers = async () => {
+  try {
+    const response = await axios.get(`${process.env.REACT_APP_BE_URL}/users`);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};

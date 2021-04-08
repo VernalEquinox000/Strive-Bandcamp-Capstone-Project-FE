@@ -4,7 +4,8 @@ import ArtistAlbumCard from "./ArtistAlbumCard";
 import { Link } from "react-router-dom";
 
 //insert (loading) below
-export default function AlbumAlbumGallery({ albums }) {
+export default function AlbumAlbumGallery({ artist }) {
+  const albums = artist.albums;
   return (
     <div>
       {/* <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-4 mb-4 text-center"> */}
@@ -18,7 +19,17 @@ export default function AlbumAlbumGallery({ albums }) {
           :  */ albums &&
           albums.map((album) => (
             <>
-              <Link to="/album/606b829a1c2e4735a3988a1e">
+              {/* <Link
+                to={{
+                  pathname: `${path}/users/${organization.id}`,
+                  state: organization,
+                }}
+              >
+                <img src={config.s3Bucket + "/" + organization.logo} />
+              </Link> */}
+              <Link
+                to={{ pathname: `/artist/${artist._id}/album/${album._id}` }}
+              >
                 <Image
                   style={{ width: "200px" }}
                   key={album._id}
