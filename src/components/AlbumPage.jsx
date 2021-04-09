@@ -79,6 +79,18 @@ export default function AlbumPage() {
               />*/}
             </Col>
           </Row>
+          <Row>
+            <Col>{album.description}</Col>
+          </Row>
+          <Row>
+            <Col>
+              <span>
+                <h6>
+                  <strong>[{album.tags}]</strong>
+                </h6>
+              </span>
+            </Col>
+          </Row>
         </Container>
       </div>
     )
