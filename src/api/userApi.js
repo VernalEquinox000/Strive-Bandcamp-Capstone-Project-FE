@@ -33,3 +33,29 @@ export const getAllUsers = async () => {
     console.log(error);
   }
 };
+
+export const getUserMe = async () => {
+  try {
+    const response = await axios.get(`${process.env.REACT_APP_BE_URL}/me`, {
+      withCredentials: true,
+    });
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const editUser = async (body) => {
+  try {
+    const response = await axios.put(
+      `${process.env.REACT_APP_BE_URL}/me`,
+      body,
+      {
+        withCredentials: true,
+      }
+    );
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
