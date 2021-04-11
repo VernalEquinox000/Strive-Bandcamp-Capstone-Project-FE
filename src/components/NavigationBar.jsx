@@ -32,15 +32,17 @@ export default function NavigationBar({ handleShow, handleClose }) {
     <Navbar bg="light" variant="light">
       <Container className="navContainer">
         <div className="logo">
-          <Navbar.Brand href="#home">
-            <img
-              src={Bandcamp}
-              width="100px"
-              height="40px"
-              className="d-inline-block align-top"
-              alt="Bandcamp logo"
-            />
-          </Navbar.Brand>
+          <Link to="/">
+            <Navbar.Brand>
+              <img
+                src={Bandcamp}
+                width="100px"
+                height="40px"
+                className="d-inline-block align-top"
+                alt="Bandcamp logo"
+              />
+            </Navbar.Brand>
+          </Link>
         </div>
         <div className="search">
           <form method="post">
