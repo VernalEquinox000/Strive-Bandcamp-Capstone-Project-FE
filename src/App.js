@@ -7,6 +7,7 @@ import ArtistPage from "./components/ArtistPage";
 import AlbumPage from "./components/AlbumPage";
 import { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import FanSetup from "./components/FanSetup";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -25,6 +26,7 @@ function App() {
           exact
           component={AlbumPage}
         />
+        <Route path="/fanSetup" exact component={FanSetup} />
       </Router>
     </div>
   );

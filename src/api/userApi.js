@@ -45,7 +45,7 @@ export const getUserMe = async () => {
   }
 };
 
-export const editUser = async (body) => {
+export const editUserMe = async (body) => {
   try {
     const response = await axios.put(
       `${process.env.REACT_APP_BE_URL}/me`,
