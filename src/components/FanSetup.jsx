@@ -35,51 +35,67 @@ export default function FanSetup(user) {
           }}
         >
           {({ values, isSubmitting, handleSubmit }) => (
-            <Form onSubmit={handleSubmit}>
-              <Form.Row>
-                <Form.Group as={Col} controlId="formGridEmail">
-                  <Form.Label>Email</Form.Label>
+            <Container>
+              <Form onSubmit={handleSubmit}>
+                <Form.Row>
+                  <Form.Group as={Col}>
+                    <Form.Label>Email</Form.Label>
+                    <Field
+                      placeholder="Enter email"
+                      type="email"
+                      name="email"
+                      as={Form.Control}
+                    />
+                  </Form.Group>
+                </Form.Row>
+                <Form.Row>
+                  <Form.Group as={Col}>
+                    <Form.Label>Password</Form.Label>
+                    <Field
+                      placeholder="Password"
+                      name="password"
+                      type="password"
+                      as={Form.Control}
+                    />
+                  </Form.Group>
+                </Form.Row>
+
+                <Form.Group as={Col}>
+                  <Form.Label>Address</Form.Label>
                   <Field
-                    type="email"
-                    placeholder="Enter email"
+                    placeholder="Address"
+                    name="address"
+                    type="address"
                     as={Form.Control}
                   />
                 </Form.Group>
-              </Form.Row>
-              <Form.Row>
-                <Form.Group as={Col} controlId="formGridPassword">
-                  <Form.Label>Password</Form.Label>
-                  <Field
-                    type="password"
-                    placeholder="Password"
-                    as={Form.Control}
-                  />
-                </Form.Group>
-              </Form.Row>
 
-              <Form.Group controlId="formGridAddress1">
-                <Form.Label>Address</Form.Label>
-                <Field placeholder="1234 Main St" as={Form.Control} />
-              </Form.Group>
+                <Form.Row>
+                  <Form.Group as={Col}>
+                    <Form.Label>City</Form.Label>
+                    <Field
+                      placeholder="City"
+                      name="city"
+                      type="city"
+                      as={Form.Control}
+                    />
+                  </Form.Group>
 
-              <Form.Row>
-                <Form.Group as={Col} controlId="formGridCity" as={Form.Control}>
-                  <Form.Label>City</Form.Label>
-                  <Field placeholder="USA" as={Form.Control} />
-                </Form.Group>
-
-                <Form.Group as={Col} controlId="formGridState">
-                  <Form.Label>State</Form.Label>
-                  <Field as="select" defaultValue="Choose..." as={Form.Control}>
-                    {/* <option>Choose...</option>
-                  <option>...</option> */}
-                  </Field>
-                </Form.Group>
-              </Form.Row>
-              <Button disabled={isSubmitting} type="submit">
-                Register
-              </Button>
-            </Form>
+                  <Form.Group as={Col}>
+                    <Form.Label>State</Form.Label>
+                    <Field
+                      placeholder="State"
+                      name="state"
+                      type="state"
+                      as={Form.Control}
+                    />
+                  </Form.Group>
+                </Form.Row>
+                <Button disabled={isSubmitting} type="submit">
+                  Register
+                </Button>
+              </Form>
+            </Container>
           )}
         </Formik>
       </div>
