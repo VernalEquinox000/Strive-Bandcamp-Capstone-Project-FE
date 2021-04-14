@@ -1,5 +1,11 @@
 import React from "react";
-
-export default function login() {
-  return <div></div>;
+import { AuthContext } from "../App";
+export default function Login() {
+  return (
+    <div className="login-container">
+      <div className="card">
+        <div className="container"></div>
+      </div>
+    </div>
+  );
 }

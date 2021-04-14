@@ -17,8 +17,6 @@ export default function AlbumPage() {
     console.log(data);
     setAlbum(data);
     console.log(album);
-    album && console.log(album.cover);
-    album && console.log(album.title);
     /* } else {
       alert("something went wrong");
     } */
