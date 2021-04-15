@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import ModalIntro from "./components/ModalIntro";
 import ArtistPage from "./components/ArtistPage";
 import AlbumPage from "./components/AlbumPage";
+import Login from "./components/Login";
 import { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import FanSetup from "./components/FanSetup";
@@ -54,10 +55,15 @@ function App() {
     >
       <div className="App">
         {/* new line below */}
-        {!state.isAuthenticated ? <Login /> : <Home />}
+
         <Router>
           <NavigationBar handleShow={handleShow} />
           <ModalIntro show={show} handleClose={handleClose} />
+          {!state.isAuthenticated ? (
+            <Login show={show} handleClose={handleClose} />
+          ) : (
+            "logged in"
+          )}
           <Route path="/" exact component={Home} />
           <Route path="/artist/:id" exact component={ArtistPage} />
           <Route
