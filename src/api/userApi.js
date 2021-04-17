@@ -36,7 +36,10 @@ export const login = async (body) => {
 export const getUserById = async (id) => {
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_BE_URL}/users/${id}`
+      `${process.env.REACT_APP_BE_URL}/users/${id}`,
+      {
+        withCredentials: true,
+      }
     );
     return response;
   } catch (error) {
