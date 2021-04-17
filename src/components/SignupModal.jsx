@@ -4,13 +4,13 @@ import { signup } from "../api/userApi";
 //import { useHistory } from "react-router-dom";
 import { Formik, Field } from "formik";
 
-export default function ModalIntro({ show, handleClose }) {
+export default function SignupModal({ show, handleClose }) {
   const [loading, setLoading] = useState(false);
   const [userType, setUserType] = useState("");
 
   return (
     <div>
-      <Modal className="modalIntro" centered show={show} onHide={handleClose}>
+      <Modal className="signup-modal" centered show={show} onHide={handleClose}>
         <Modal.Dialog>
           <Modal.Header closeButton>
             <Modal.Title>Signup </Modal.Title>

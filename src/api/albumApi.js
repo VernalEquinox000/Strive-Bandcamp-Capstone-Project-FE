@@ -10,3 +10,20 @@ export const getAlbumById = async (id) => {
     console.log(error);
   }
 };
+
+export const addAlbum = async (body) => {
+  try {
+    const response = await axios.post(
+      `${process.env.REACT_APP_BE_URL}/albums`,
+      body,
+      {
+        headers: { "Content-Type": "application/json" },
+        //withCredentials: true
+      }
+    );
+    return response;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};

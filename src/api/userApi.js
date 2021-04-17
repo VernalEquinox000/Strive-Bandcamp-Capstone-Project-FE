@@ -1,5 +1,6 @@
 import axios from "../helpers/apiCall";
 
+//signup
 export const signup = async (body) => {
   try {
     const response = await axios.post(
@@ -14,6 +15,24 @@ export const signup = async (body) => {
   }
 };
 
+//login
+export const login = async (body) => {
+  //try {
+  const response = await axios.post(
+    `${process.env.REACT_APP_BE_URL}/users/login`,
+    body,
+    {
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
+    }
+  );
+  return response;
+  /* } catch (error) {
+    console.log(error);
+  } */
+};
+
+//get user by Id
 export const getUserById = async (id) => {
   try {
     const response = await axios.get(
@@ -25,6 +44,7 @@ export const getUserById = async (id) => {
   }
 };
 
+//get all users
 export const getAllUsers = async () => {
   try {
     const response = await axios.get(`${process.env.REACT_APP_BE_URL}/users`);
