@@ -4,13 +4,18 @@ import { signup } from "../api/userApi";
 //import { useHistory } from "react-router-dom";
 import { Formik, Field } from "formik";
 
-export default function SignupModal({ show, handleClose }) {
+export default function SignupModal({ show, handleSignupClose }) {
   const [loading, setLoading] = useState(false);
   const [userType, setUserType] = useState("");
 
   return (
     <div>
-      <Modal className="signup-modal" centered show={show} onHide={handleClose}>
+      <Modal
+        className="signup-modal"
+        centered
+        show={show}
+        onHide={handleSignupClose}
+      >
         <Modal.Dialog>
           <Modal.Header closeButton>
             <Modal.Title>Signup </Modal.Title>
@@ -108,7 +113,7 @@ export default function SignupModal({ show, handleClose }) {
                       <Button disabled={isSubmitting} type="submit">
                         Register
                       </Button>
-                      <Button variant="secondary" onClick={handleClose}>
+                      <Button variant="secondary" onClick={handleSignupClose}>
                         Close
                       </Button>
                     </Modal.Footer>
