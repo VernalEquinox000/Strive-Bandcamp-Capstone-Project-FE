@@ -6,7 +6,7 @@ import { Formik, Field } from "formik";
 import { useDispatch } from "react-redux";
 import { isLoggedIn } from "../helpers/functions";
 
-export default function LoginModal({ show, handleClose }) {
+export default function LoginModal({ showLogin, handleLoginClose }) {
   const [loading, setLoading] = useState(false);
   const [userType, setUserType] = useState("");
 
@@ -33,7 +33,12 @@ export default function LoginModal({ show, handleClose }) {
 
   return (
     <div>
-      <Modal className="login-modal" centered show={show} onHide={handleClose}>
+      <Modal
+        className="login-modal"
+        centered
+        showLogin={showLogin}
+        onHide={handleLoginClose}
+      >
         <Modal.Dialog>
           <Modal.Header closeButton>
             <Modal.Title>Login </Modal.Title>
@@ -95,7 +100,7 @@ export default function LoginModal({ show, handleClose }) {
                   <Button disabled={isSubmitting} type="submit">
                     Login
                   </Button>
-                  <Button variant="secondary" onClick={handleClose}>
+                  <Button variant="secondary" onClick={handleLoginClose}>
                     Close
                   </Button>
                 </Modal.Footer>

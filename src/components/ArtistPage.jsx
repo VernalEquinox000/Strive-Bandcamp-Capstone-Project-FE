@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import ArtistBar from "./ArtistBar";
 import { getUserById } from "../api/userApi";
-import { useParams } from "react-router-dom";
-import ArtistAlbumGallery from "./ArtistAlbumGallery";
+import { useParams, Link } from "react-router-dom";
 import ArtistSidePanel from "./ArtistSidePanel";
 export default function ArtistPage() {
   const matchParams = useParams();
@@ -31,12 +30,60 @@ export default function ArtistPage() {
     artist && (
       <>
         <ArtistBar key={artist._id} header={artist.headerPic} />
-        <Container className="d-flex flex-column justify-content-center align-content-center p-0">
-          <Row className="m-0">
-            <Col xs={9}>
-              <ArtistAlbumGallery artist={artist} />
+        <Container className="d-flex flex-column justify-content-center align-content-center">
+          <Row className="row-cols-1 row-cols-sm-6 row-cols-md-6 artist-row">
+            {artist.albums.map((album) => (
+              <Col className="col text-center mb-2 mb-lg-0 px-1">
+                <Link
+                  to={{
+                    pathname: `/artist/${artist._id}/album/${album._id}`,
+                  }}
+                >
+                  <div class="home-artist position-relative" key={album._id}>
+                    <img class="img-fluid rounded" src={album.cover} />
+                    <h6>{album.title}</h6>
+                  </div>
+                </Link>
+              </Col>
+            ))}
+            <Col className="col text-center mb-2 mb-lg-0 px-1">
+              <div class="home-artist position-relative">
+                <img
+                  class="img-fluid rounded"
+                  src="https://via.placeholder.com/150"
+                />
+                <h6>prova</h6>
+              </div>
             </Col>
-            <Col xs={3}>
+            <Col className="col text-center mb-2 mb-lg-0 px-1">
+              <div class="home-artist position-relative">
+                <img
+                  class="img-fluid rounded"
+                  src="https://via.placeholder.com/150"
+                />
+                <h6>prova</h6>
+              </div>
+            </Col>
+            <Col className="col text-center mb-2 mb-lg-0 px-1">
+              <div class="home-artist position-relative">
+                <img
+                  class="img-fluid rounded"
+                  src="https://via.placeholder.com/150"
+                />
+                <h6>prova</h6>
+              </div>
+            </Col>
+            <Col className="col text-center mb-2 mb-lg-0 px-1">
+              <div class="home-artist position-relative">
+                <img
+                  class="img-fluid rounded"
+                  src="https://via.placeholder.com/150"
+                />
+                <h6>prova</h6>
+              </div>
+            </Col>
+
+            <Col className="col text-center mb-2 mb-lg-0 px-1">
               <ArtistSidePanel
                 pic={artist.profilePic}
                 name={artist.artistName}

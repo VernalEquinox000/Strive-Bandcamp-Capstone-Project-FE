@@ -18,34 +18,14 @@ export default function AlbumAlbumGallery({ artist }) {
             ))
           :  */ albums &&
           albums.map((album) => (
-            <>
-              {/* <Link
-                to={{
-                  pathname: `${path}/users/${organization.id}`,
-                  state: organization,
-                }}
-              >
-                <img src={config.s3Bucket + "/" + organization.logo} />
-              </Link> */}
-              <Link
-                to={{ pathname: `/artist/${artist._id}/album/${album._id}` }}
-              >
-                <Image
-                  style={{ width: "200px" }}
-                  key={album._id}
-                  className="img-fluid"
-                  src={album.cover}
-                  alt="album cover"
-                  /* onClick={history.push("/album/" + album._id)} */
-                />
-                <p>
-                  <strong>{album.title}</strong>
-                </p>
-              </Link>
-            </>
+            <Link to={{ pathname: `/artist/${artist._id}/album/${album._id}` }}>
+              <div class="artist-album position-relative" key={album._id}>
+                <img class="img-fluid rounded" src={album.cover} />
+                <h6>{album.title}</h6>
+              </div>
+            </Link>
           ))
       }
-      {/* </Row> */}
     </div>
   );
 }

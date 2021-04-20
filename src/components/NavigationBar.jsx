@@ -6,9 +6,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { isLoggedIn } from "../helpers/functions";
 import { getUserById } from "../api/userApi";
 
-export default function NavigationBar({ handleShow, handleClose }) {
-  const [loading, setLoading] = useState(false);
-  const [showSignup, setShowSignup] = useState(false);
+export default function NavigationBar({
+  handleSignupShow,
+  handleLoginShow,
+  handleClose,
+}) {
+  //const [loading, setLoading] = useState(false);
+  //const [showSignup, setShowSignup] = useState(false);
   //New bbelow
   const location = useLocation();
   const history = useHistory();
@@ -72,34 +76,32 @@ export default function NavigationBar({ handleShow, handleClose }) {
         <div className="setlog">
           {
             /* isLoggedIn() === "false" */
-            !user
-              ? ((
-                  <span style={{ cursor: "pointer" }} onClick={handleShow}>
-                    Signup
-                  </span>
-                ),
-                (
-                  <span style={{ cursor: "pointer" }} onClick={handleShow}>
-                    Login
-                  </span>
-                ))
-              : user && (
-                  <span>
-                    <i class="fas fa-xs fa-heart"></i>
-                    <i class="fas fa-xs fa-compass"></i>
+            !user ? (
+              <>
+                <span style={{ cursor: "pointer" }} onClick={handleSignupShow}>
+                  Signup
+                </span>
+                <span style={{ cursor: "pointer" }} onClick={handleLoginShow}>
+                  Login
+                </span>
+              </>
+            ) : (
+              <span>
+                <i class="fas fa-xs fa-heart"></i>
+                <i class="fas fa-xs fa-compass"></i>
 
-                    <img
-                      class="profile-img"
-                      src={
-                        user.profilePic ||
-                        "https://st4.depositphotos.com/4329009/19956/v/380/depositphotos_199564354-stock-illustration-creative-vector-illustration-default-avatar.jpg"
-                      }
-                      alt="user avatar"
-                      style={{ width: "30px" }}
-                      onClick={() => history.push("/me/dash")}
-                    />
-                  </span>
-                )
+                <img
+                  class="profile-img"
+                  src={
+                    user.profilePic ||
+                    "https://st4.depositphotos.com/4329009/19956/v/380/depositphotos_199564354-stock-illustration-creative-vector-illustration-default-avatar.jpg"
+                  }
+                  alt="user avatar"
+                  style={{ width: "30px" }}
+                  onClick={() => history.push("/me/dash")}
+                />
+              </span>
+            )
           }
         </div>
       </Container>
