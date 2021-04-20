@@ -21,7 +21,7 @@ function App() {
     <div className="App">
       <Router>
         <NavigationBar handleShow={handleShow} />
-        {/* <SignupModal show={show} handleClose={handleClose} /> */}
+        <SignupModal show={show} handleClose={handleClose} />
         <LoginModal show={show} handleClose={handleClose} />
         <Route path="/" exact component={Home} />
         <Route path="/artist/:id" exact component={ArtistPage} />

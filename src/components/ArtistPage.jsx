@@ -26,19 +26,17 @@ export default function ArtistPage() {
     fetchUser(matchParams.id);
   }, []);
 
+  //className = "row-cols-1 row-cols-sm-2 row-cols-lg-4 mb-4 text-left";
   return (
     artist && (
-      <div>
+      <>
         <ArtistBar key={artist._id} header={artist.headerPic} />
-        <Container className="d-flex flex-column justify-content-center align-content-center">
-          <Row
-            Row
-            className="row-cols-1 row-cols-sm-2 row-cols-lg-4 mb-4 text-left"
-          >
-            <Col xl={9}>
+        <Container className="d-flex flex-column justify-content-center align-content-center p-0">
+          <Row className="m-0">
+            <Col xs={9}>
               <ArtistAlbumGallery artist={artist} />
             </Col>
-            <Col xl={3}>
+            <Col xs={3}>
               <ArtistSidePanel
                 pic={artist.profilePic}
                 name={artist.artistName}
@@ -48,7 +46,7 @@ export default function ArtistPage() {
             </Col>
           </Row>
         </Container>
-      </div>
+      </>
     )
   );
 }

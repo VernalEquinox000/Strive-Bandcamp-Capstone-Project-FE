@@ -2,20 +2,24 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Image, Button } from "react-bootstrap";
 import { getAlbumById } from "../api/albumApi";
 import { getUserById } from "../api/userApi";
-import { useParams, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useParams, Link, useHistory } from "react-router-dom";
 import Neko from "../assets/bc-neko.png";
 import Bunny from "../assets/bc-bunny.png";
 
 export default function ArtistDash() {
   const matchParams = useParams();
-  const [artist, setArtist] = useState("6063a38923feb85e4d745853");
-  const [album, setAlbum] = useState(null);
+  /* const [album, setAlbum] = useState(null); */
+  //new below
+  const history = useHistory();
+  const user = useSelector((state) => state.user);
 
-  const fetchAlbum = async (id) => {
-    const response = await getAlbumById("6063a34f23feb85e4d745852");
+  /*const fetchAlbum = async (id) => {
+    const response = await getAlbumById(id);
     const data = await response.data;
     console.log(data);
-    setAlbum(data);
+  };
+  setAlbum(data);
     console.log(album);
     album && console.log(album.cover);
     album && console.log(album.title);
@@ -23,7 +27,7 @@ export default function ArtistDash() {
 
   const fetchUser = async (id) => {
     const response = await getUserById("6063a38923feb85e4d745853");
-    /* if (response.statusText === "OK") { */
+    //(response.statusText === "OK") { 
     const data = await response.data;
     console.log(data);
     setArtist(data);
@@ -33,15 +37,14 @@ export default function ArtistDash() {
   useEffect(() => {
     fetchUser("6063a38923feb85e4d745853");
     fetchAlbum("6063a38923feb85e4d745853");
-  }, []);
+  }, []); */
 
   return (
-    artist &&
-    album && (
+    user && (
       <div>
         <Container className="mt-5">
           <Row className="mt-5">
-            <h2>Welcome {artist.artistName}! This is your dashboard.</h2>
+            <h2>Welcome {user.artistName}! This is your dashboard.</h2>
           </Row>
           <Row className="mt-5">
             <Col sm={6}>
@@ -58,7 +61,9 @@ export default function ArtistDash() {
 
               <p className="mt-5">
                 <h6>Your albums:</h6>
-                <a href="#">{album.title}</a>
+                <Link to={{ pathname: `/me/album/${user.albums[0]}` }}>
+                  {user.albums[0]}
+                </Link>
               </p>
             </Col>
             <Col sm={2}>

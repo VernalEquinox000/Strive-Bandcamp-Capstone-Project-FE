@@ -17,21 +17,21 @@ export default function NavigationBar({ handleShow, handleClose }) {
   const [showDropDown, setShowDropDown] = useState(false);
 
   useEffect(() => {
-    if (isLoggedIn() === "true") {
-      dispatch(async (dispatch) => {
-        try {
-          const response = await getUserById("me");
-          if (response.statusText === "OK") {
-            dispatch({
-              type: "SET_USER",
-              payload: response.data,
-            });
-          }
-        } catch (error) {
-          console.log(error.response);
+    //if (isLoggedIn() === "true") {
+    dispatch(async (dispatch) => {
+      try {
+        const response = await getUserById("me");
+        if (response.statusText === "OK") {
+          dispatch({
+            type: "SET_USER",
+            payload: response.data,
+          });
         }
-      });
-    }
+      } catch (error) {
+        console.log(error.response);
+      }
+    });
+    //}
   }, []);
 
   /* const handleSubmit = async (e) => {
@@ -44,12 +44,7 @@ export default function NavigationBar({ handleShow, handleClose }) {
   return (
     <Navbar bg="light" variant="light">
       <Container className="navContainer">
-        {/* <div className="logo"> */}
-        <div
-          className={`d-flex justify-content-between w-100 ${
-            isLoggedIn() === "false" && "align-items-center"
-          }`}
-        >
+        <div className="logo">
           <Link to="/">
             <Navbar.Brand>
               <img
@@ -75,33 +70,37 @@ export default function NavigationBar({ handleShow, handleClose }) {
         </div>
 
         <div className="setlog">
-          {isLoggedIn() === "false"
-            ? ((
-                <span style={{ cursor: "pointer" }} onClick={handleShow}>
-                  Signup
-                </span>
-              ),
-              (
-                <span style={{ cursor: "pointer" }} onClick={handleShow}>
-                  Login
-                </span>
-              ))
-            : user && (
-                <span>
-                  <i class="fas fa-xs fa-heart"></i>
-                  <i class="fas fa-xs fa-compass"></i>
+          {
+            /* isLoggedIn() === "false" */
+            !user
+              ? ((
+                  <span style={{ cursor: "pointer" }} onClick={handleShow}>
+                    Signup
+                  </span>
+                ),
+                (
+                  <span style={{ cursor: "pointer" }} onClick={handleShow}>
+                    Login
+                  </span>
+                ))
+              : user && (
+                  <span>
+                    <i class="fas fa-xs fa-heart"></i>
+                    <i class="fas fa-xs fa-compass"></i>
 
-                  <img
-                    class="profile-img"
-                    src={
-                      user
-                        ? user.picture
-                        : "https://st4.depositphotos.com/4329009/19956/v/380/depositphotos_199564354-stock-illustration-creative-vector-illustration-default-avatar.jpg"
-                    }
-                    alt="user avatar"
-                  />
-                </span>
-              )}
+                    <img
+                      class="profile-img"
+                      src={
+                        user.profilePic ||
+                        "https://st4.depositphotos.com/4329009/19956/v/380/depositphotos_199564354-stock-illustration-creative-vector-illustration-default-avatar.jpg"
+                      }
+                      alt="user avatar"
+                      style={{ width: "30px" }}
+                      onClick={() => history.push("/me/dash")}
+                    />
+                  </span>
+                )
+          }
         </div>
       </Container>
     </Navbar>
