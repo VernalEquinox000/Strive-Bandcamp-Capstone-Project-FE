@@ -1,24 +1,36 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Container } from "react-bootstrap";
+import { Navbar, Container, Modal, Button } from "react-bootstrap";
 import { Link, withRouter, useHistory, useLocation } from "react-router-dom";
 import Bandcamp from "../assets/bandcamp.svg";
 import { useSelector, useDispatch } from "react-redux";
 import { isLoggedIn } from "../helpers/functions";
 import { getUserById } from "../api/userApi";
+import SignupModal from "./SignupModal";
+import LoginModal from "./LoginModal";
 
-export default function NavigationBar({
-  handleSignupShow,
-  handleLoginShow,
-  handleClose,
-}) {
+export default function NavigationBar() {
   //const [loading, setLoading] = useState(false);
-  //const [showSignup, setShowSignup] = useState(false);
+
   //New bbelow
   const location = useLocation();
   const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [showDropDown, setShowDropDown] = useState(false);
+
+  const [show, setshow] = useState(false);
+  const handleClose = () => {
+    setshow(false);
+    setCurrentModal("");
+  };
+  const handleshow = (modalType) => {
+    setshow(true);
+    setCurrentModal(modalType);
+  };
+  const [currentModal, setCurrentModal] = useState(null);
+  /* const [showLogin, setShowLogin] = useState(false);
+  const handleCloseLogin = () => setShowLogin(false);
+  const handleShowLogin = () => setShowLogin(true); */
 
   useEffect(() => {
     //if (isLoggedIn() === "true") {
@@ -78,10 +90,16 @@ export default function NavigationBar({
             /* isLoggedIn() === "false" */
             !user ? (
               <>
-                <span style={{ cursor: "pointer" }} onClick={handleSignupShow}>
+                <span
+                  style={{ cursor: "pointer" }}
+                  onClick={() => handleshow("signup")}
+                >
                   Signup
                 </span>
-                <span style={{ cursor: "pointer" }} onClick={handleLoginShow}>
+                <span
+                  style={{ cursor: "pointer" }}
+                  onClick={() => handleshow("login")}
+                >
                   Login
                 </span>
               </>
@@ -105,6 +123,15 @@ export default function NavigationBar({
           }
         </div>
       </Container>
+      <Modal show={show} onHide={handleClose}>
+        {currentModal === "login" && show ? (
+          <LoginModal handleClose={handleClose} />
+        ) : currentModal === "signup" && show ? (
+          <SignupModal handleClose={handleClose} />
+        ) : (
+          ""
+        )}
+      </Modal>
     </Navbar>
   );
 }

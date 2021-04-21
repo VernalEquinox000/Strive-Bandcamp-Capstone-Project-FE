@@ -52,10 +52,10 @@ export default function AlbumPage() {
               <h1>{album.title}</h1>
               {album.songs.map((song) => (
                 <span>
-                  <h6>
+                  <h6 onClick={() => song.audioFile}>
                     {song.number}
                     {"   "}
-                    <a href={song.audioFile}>{song.songTitle}</a>
+                    {song.songTitle}
                   </h6>
                 </span>
               ))}

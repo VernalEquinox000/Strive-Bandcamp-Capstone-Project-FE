@@ -6,7 +6,7 @@ import { Formik, Field } from "formik";
 import { useDispatch } from "react-redux";
 import { isLoggedIn } from "../helpers/functions";
 
-export default function LoginModal({ showLogin, handleLoginClose }) {
+export default function LoginModal({ handleClose }) {
   const [loading, setLoading] = useState(false);
   const [userType, setUserType] = useState("");
 
@@ -33,12 +33,7 @@ export default function LoginModal({ showLogin, handleLoginClose }) {
 
   return (
     <div>
-      <Modal
-        className="login-modal"
-        centered
-        showLogin={showLogin}
-        onHide={handleLoginClose}
-      >
+      <>
         <Modal.Dialog>
           <Modal.Header closeButton>
             <Modal.Title>Login </Modal.Title>
@@ -62,7 +57,8 @@ export default function LoginModal({ showLogin, handleLoginClose }) {
                   localStorage.setItem("LoggedIn", true);
                   if (isLoggedIn() === "true") {
                     setUser();
-                    history.push("/");
+                    //history.push("/");
+                    handleClose();
                   }
                 }
               } catch (error) {
@@ -100,7 +96,7 @@ export default function LoginModal({ showLogin, handleLoginClose }) {
                   <Button disabled={isSubmitting} type="submit">
                     Login
                   </Button>
-                  <Button variant="secondary" onClick={handleLoginClose}>
+                  <Button variant="secondary" onClick={handleClose}>
                     Close
                   </Button>
                 </Modal.Footer>
@@ -108,7 +104,7 @@ export default function LoginModal({ showLogin, handleLoginClose }) {
             )}
           </Formik>
         </Modal.Dialog>
-      </Modal>
+      </>
     </div>
   );
 }

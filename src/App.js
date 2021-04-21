@@ -13,20 +13,11 @@ import ArtistDash from "./components/ArtistDash";
 import AddAlbum from "./components/AddAlbum";
 
 function App() {
-  const [showSignup, setShowSignup] = useState(false);
-  const handleCloseS = () => setShowSignup(false);
-  const handleShowS = () => setShowSignup(true);
-
-  const [showLogin, setShowLogin] = useState(false);
-  const handleCloseL = () => setShowLogin(false);
-  const handleShowL = () => setShowLogin(true);
-
   return (
     <div className="App">
       <Router>
-        <NavigationBar handleShow={handleShow} />
-        <SignupModal show={showSignup} handleClose={handleCloseS} />
-        <LoginModal show={showLogin} handleClose={handleCloseL} />
+        <NavigationBar />
+
         <Route path="/" exact component={Home} />
         <Route path="/artist/:id" exact component={ArtistPage} />
         <Route
