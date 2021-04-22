@@ -38,6 +38,7 @@ export default function ArtistPage() {
                   to={{
                     pathname: `/artist/${artist._id}/album/${album._id}`,
                   }}
+                  artist={artist}
                 >
                   <div class="home-artist position-relative" key={album._id}>
                     <img class="img-fluid rounded" src={album.cover} />
