@@ -27,3 +27,13 @@ export const addAlbum = async (body) => {
     return error;
   }
 };
+
+//get all albums
+export const getAllAlbums = async () => {
+  try {
+    const response = await axios.get(`${process.env.REACT_APP_BE_URL}/albums`);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};

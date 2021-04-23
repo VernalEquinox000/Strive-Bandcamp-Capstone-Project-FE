@@ -28,7 +28,10 @@ export default function Selling() {
 
   return (
     <div>
-      <Container className="d-flex flex-column justify-content-center align-content-center">
+      <Container className="d-flex flex-column justify-content-center align-content-center mt-5">
+        <Row className="row-cols-1 text-left">
+          <h3>Featured Artists</h3>
+        </Row>
         <Row className="row-cols-1 row-cols-sm-6 row-cols-md-6 artist-row">
           {artists &&
             artists

@@ -1,17 +1,21 @@
-import React, { useState, useEffect, createRef } from "react";
-import { Container, Row, Col, Image } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Container, Row, Col, Image, Modal, Button } from "react-bootstrap";
 import ArtistBar from "./ArtistBar";
 import { getAlbumById } from "../api/albumApi";
 import { getUserById } from "../api/userApi";
-import { useParams } from "react-router-dom";
-import ArtistSidePanel from "./ArtistSidePanel";
+import { useParams, Link } from "react-router-dom";
 import Player from "./Player";
+import AlbumSidePanel from "./ArtistSidePanel";
 
 export default function AlbumPage() {
   const matchParams = useParams();
   const [artist, setArtist] = useState(null);
   const [album, setAlbum] = useState(null);
   const [selectedSong, setSelectedSong] = useState(null);
+  //modal
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const fetchAlbum = async (id) => {
     const response = await getAlbumById(matchParams.albumId);
@@ -39,64 +43,73 @@ export default function AlbumPage() {
     fetchUser(matchParams.artistId);
   }, []);
 
-  const songHandler = (e) => {
-    setSelectedSong({ song: e.target.value });
-  };
-
   return (
     artist &&
     album && (
       <div>
         <ArtistBar key={artist._id} header={artist.headerPic} />
         <Container className="d-flex flex-column justify-content-center align-content-center">
-          <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-4 mb-4 text-left ml-5">
-            <Col xl={5}>
-              <h1>{album.title}</h1>
+          <Row className="text-left">
+            <Col sm={{ span: 4, offset: 1 }}>
+              <h2>{album.title}</h2>
+
+              <h6 className="mb-5">
+                by <Link>{artist.artistName}</Link>
+              </h6>
               <Player file={selectedSong} />
-
-              {album.songs.map((song) => (
-                <span>
-                  <h6 onClick={() => setSelectedSong(song.audioFile)}>
-                    {song.number}
-                    {"   "}
-                    {song.songTitle}
-                  </h6>
-
-                  {/* <ReactAudioPlayer src={song.audioFile} autoPlay controls />; */}
-                </span>
-              ))}
+              <h4 className="mt-5">
+                Buy Digital Album €5 {/* add album price in BE */}
+              </h4>
+              <div className="mt-5">
+                {album.songs.map((song) => (
+                  <p class>
+                    <span
+                      className="song-span"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => setSelectedSong(song.audioFile)}
+                    >
+                      <strong>
+                        {song.number}.{"   "}
+                        {song.songTitle} {"   "}
+                      </strong>
+                    </span>
+                    <span>Buy track €{song.price}</span>
+                  </p>
+                ))}
+              </div>
+              <p className="mt-5">{album.description}</p>
+              <span className="mt-5">
+                <h6>
+                  <strong>[{album.tags + "  "}]</strong>
+                </h6>
+              </span>
             </Col>
-            <Col xl={4}>
+            <Col sm={{ span: 4 }}>
               <Image
-                style={{ width: "400px" }}
+                style={{ width: "300px" }}
                 key={album._id}
                 className="img-fluid"
                 src={album.cover}
                 alt="album cover"
-                /* onClick={history.push("/album/" + album._id)} */
+                onClick={handleShow}
               />
             </Col>
-            <Col xl={3}>
-              {/* <ArtistSidePanel
+            <Col sm={{ span: 2 }}>
+              <AlbumSidePanel
                 pic={artist.profilePic}
                 name={artist.artistName}
                 desc={artist.description}
-                link={artist.url[0]} 
-              />*/}
+                link={artist.url[0]}
+                albums={artist.albums}
+              />
             </Col>
           </Row>
-          <Row>
-            <Col>{album.description}</Col>
-          </Row>
-          <Row>
-            <Col>
-              <span>
-                <h6>
-                  <strong>[{album.tags}]</strong>
-                </h6>
-              </span>
-            </Col>
-          </Row>
+          <Modal show={show} onHide={handleClose} size="lg">
+            <Modal.Header closeButton></Modal.Header>
+            <Modal.Body>
+              <img src={album.cover} style={{ width: "100%" }} />
+            </Modal.Body>
+          </Modal>
         </Container>
       </div>
     )

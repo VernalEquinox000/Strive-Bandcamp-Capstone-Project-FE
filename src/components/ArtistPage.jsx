@@ -47,42 +47,6 @@ export default function ArtistPage() {
                 </Link>
               </Col>
             ))}
-            <Col className="col text-center mb-2 mb-lg-0 px-1">
-              <div class="home-artist position-relative">
-                <img
-                  class="img-fluid rounded"
-                  src="https://via.placeholder.com/150"
-                />
-                <h6>prova</h6>
-              </div>
-            </Col>
-            <Col className="col text-center mb-2 mb-lg-0 px-1">
-              <div class="home-artist position-relative">
-                <img
-                  class="img-fluid rounded"
-                  src="https://via.placeholder.com/150"
-                />
-                <h6>prova</h6>
-              </div>
-            </Col>
-            <Col className="col text-center mb-2 mb-lg-0 px-1">
-              <div class="home-artist position-relative">
-                <img
-                  class="img-fluid rounded"
-                  src="https://via.placeholder.com/150"
-                />
-                <h6>prova</h6>
-              </div>
-            </Col>
-            <Col className="col text-center mb-2 mb-lg-0 px-1">
-              <div class="home-artist position-relative">
-                <img
-                  class="img-fluid rounded"
-                  src="https://via.placeholder.com/150"
-                />
-                <h6>prova</h6>
-              </div>
-            </Col>
 
             <Col className="col text-center mb-2 mb-lg-0 px-1">
               <ArtistSidePanel
