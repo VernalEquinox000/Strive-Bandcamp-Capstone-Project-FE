@@ -43,6 +43,13 @@ export default function AlbumPage() {
     fetchUser(matchParams.artistId);
   }, []);
 
+  /*   const songMinSec = async (dur) => {
+    const min = dur / 60;
+    const sec = dur % 60;
+    const time = `${min}:${sec}`;
+    return time;
+  }; */
+
   return (
     artist &&
     album && (
@@ -71,6 +78,7 @@ export default function AlbumPage() {
                       <strong>
                         {song.number}.{"   "}
                         {song.songTitle} {"   "}
+                        {/* {songMinSec(song.duration)} */}
                       </strong>
                     </span>
                     <span>Buy track €{song.price}</span>

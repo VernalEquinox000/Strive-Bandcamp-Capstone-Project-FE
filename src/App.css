@@ -73,3 +73,41 @@ body {
 .song-span:hover {
   color: red;
 }
+
+/* .wrap-profile {
+  position: relative;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.profile-img {
+  position: absolute;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+}
+
+.wrap-profile:hover {
+  border-radius: 50%;
+  border: 1px solid black;
+  width: 30px;
+  height: 30px;
+}
+
+.spanheader {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-width: 600px;
+  min-width: 210px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.spanheader a .fas {
+  margin-right: 20px;
+}
+ */

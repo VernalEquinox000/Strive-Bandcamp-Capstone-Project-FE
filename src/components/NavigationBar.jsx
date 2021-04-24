@@ -104,20 +104,20 @@ export default function NavigationBar() {
                 </span>
               </>
             ) : (
-              <span>
-                <i class="fas fa-xs fa-heart"></i>
-                <i class="fas fa-xs fa-compass"></i>
-
-                <img
-                  class="profile-img"
-                  src={
-                    user.profilePic ||
-                    "https://st4.depositphotos.com/4329009/19956/v/380/depositphotos_199564354-stock-illustration-creative-vector-illustration-default-avatar.jpg"
-                  }
-                  alt="user avatar"
-                  style={{ width: "30px" }}
-                  onClick={() => history.push("/me/dash")}
-                />
+              <span className="span-header">
+                <i class="far fa-heart" style={{ width: "30px" }}></i>
+                <div className="wrap-profile">
+                  <img
+                    class="profile-img"
+                    src={
+                      user.profilePic ||
+                      "https://st4.depositphotos.com/4329009/19956/v/380/depositphotos_199564354-stock-illustration-creative-vector-illustration-default-avatar.jpg"
+                    }
+                    alt="user avatar"
+                    style={{ width: "30px" }}
+                    onClick={() => history.push("/me/dash")}
+                  />
+                </div>
               </span>
             )
           }
