@@ -17,19 +17,35 @@ export const signup = async (body) => {
 
 //login
 export const login = async (body) => {
-  //try {
-  const response = await axios.post(
-    `${process.env.REACT_APP_BE_URL}/users/login`,
-    body,
-    {
-      headers: { "Content-Type": "application/json" },
-      withCredentials: true,
-    }
-  );
-  return response;
-  /* } catch (error) {
+  try {
+    const response = await axios.post(
+      `${process.env.REACT_APP_BE_URL}/users/login`,
+      body,
+      {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      }
+    );
+    return response;
+  } catch (error) {
     console.log(error);
-  } */
+    return error;
+  }
+};
+
+//logout
+export const logout = async () => {
+  try {
+    const response = await axios.post(
+      `${process.env.REACT_APP_BE_URL}/users/logout`,
+      {},
+      { withCredentials: true }
+    );
+    return response;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
 };
 
 //get user by Id
@@ -57,7 +73,7 @@ export const getAllUsers = async () => {
   }
 };
 
-export const getUserMe = async () => {
+/* export const getUserMe = async () => {
   try {
     const response = await axios.get(`${process.env.REACT_APP_BE_URL}/me`, {
       withCredentials: true,
@@ -66,12 +82,12 @@ export const getUserMe = async () => {
   } catch (error) {
     console.log(error);
   }
-};
+}; */
 
 export const editUserMe = async (body) => {
   try {
     const response = await axios.put(
-      `${process.env.REACT_APP_BE_URL}/me`,
+      `${process.env.REACT_APP_BE_URL}/users/me`,
       body,
       {
         withCredentials: true,

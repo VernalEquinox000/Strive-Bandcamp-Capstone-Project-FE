@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Button, Form, Row, Col } from "react-bootstrap";
+import { Modal, Button, Form, Col } from "react-bootstrap";
 import { login, getUserById } from "../api/userApi";
 import { useHistory } from "react-router-dom";
 import { Formik, Field } from "formik";
@@ -63,6 +63,7 @@ export default function LoginModal({ handleClose }) {
                 }
               } catch (error) {
                 console.log(error.response.data);
+                setSubmitting(false);
               }
             }}
           >

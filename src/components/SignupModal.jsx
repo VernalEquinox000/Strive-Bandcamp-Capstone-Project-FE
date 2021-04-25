@@ -47,6 +47,8 @@ export default function SignupModal({ handleClose }) {
                     console.log(data);
                     setSubmitting(false);
                     resetForm();
+                    handleClose();
+                    alert("you have successfully created your profile!");
                   }
                 } catch (error) {
                   console.log(error.response.data);
@@ -85,6 +87,7 @@ export default function SignupModal({ handleClose }) {
                         name="username"
                         type="username"
                         as={Form.Control}
+                        required
                       />
                     </Form.Group>
                   </Form.Row>
@@ -97,6 +100,7 @@ export default function SignupModal({ handleClose }) {
                           name="artistName"
                           type="artistName"
                           as={Form.Control}
+                          required
                         />
                       </Form.Group>
                     </Form.Row>
@@ -111,7 +115,6 @@ export default function SignupModal({ handleClose }) {
                       Close
                     </Button>
                   </Modal.Footer>
-                  <h6>Already have an account? Login</h6>
                 </Form>
               )}
             </Formik>

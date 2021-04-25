@@ -74,6 +74,10 @@ body {
   color: red;
 }
 
+.icon-class {
+  width: 32px !important;
+}
+
 /* .wrap-profile {
   position: relative;
   border-radius: 50%;

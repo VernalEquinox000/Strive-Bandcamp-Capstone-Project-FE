@@ -44,7 +44,7 @@ export default function Selling() {
           {loaderSelling ? (
             [0, 1, 2, 3, 4, 5].map((item) => (
               <Col className="col text-center mb-2 mb-lg-0 px-1" key={item}>
-                <Spinner animation="border" variant="light" />
+                <Spinner animation="grow" variant="dark" />
               </Col>
             ))
           ) : (
