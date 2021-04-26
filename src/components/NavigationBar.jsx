@@ -1,32 +1,61 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Navbar,
   Container,
-  Row,
-  Nav,
+  Modal,
   Form,
   FormControl,
-  Alert,
-  Modal,
   Button,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import Bandcamp from "../assets/bandcamp.svg";
-import ModalIntro from "../components/ModalIntro";
+import { useSelector, useDispatch } from "react-redux";
+import { isLoggedIn } from "../helpers/functions";
+import { getUserById, logout } from "../api/userApi";
+import SignupModal from "./SignupModal";
+import LoginModal from "./LoginModal";
 
-export default function NavigationBar({ handleShow, handleClose }) {
-  const [loading, setLoading] = useState(false);
-  const [showSignup, setShowSignup] = useState(false);
+export default function NavigationBar() {
+  const location = useLocation();
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
-  const handleSignupOff = () => setShowSignup(false);
-  const handleSignupOn = () => setShowSignup(true);
+  const [show, setshow] = useState(false);
+  const handleClose = () => {
+    setshow(false);
+    setCurrentModal("");
+  };
+  const handleshow = (modalType) => {
+    setshow(true);
+    setCurrentModal(modalType);
+  };
+  const [currentModal, setCurrentModal] = useState(null);
 
-  const handleSubmit = async (e) => {
+  useEffect(() => {
+    //if (isLoggedIn() === "true") {
+    dispatch(async (dispatch) => {
+      try {
+        const response = await getUserById("me");
+        if (response.statusText === "OK") {
+          dispatch({
+            type: "SET_USER",
+            payload: response.data,
+          });
+        }
+      } catch (error) {
+        console.log(error.response);
+      }
+    });
+    //}
+  }, []);
+
+  /* const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    /* handleClose();
-    setLoading(false); */
-  };
+    handleClose();
+    setLoading(false);
+  }; */
 
   return (
     <Navbar bg="light" variant="light">
@@ -36,8 +65,8 @@ export default function NavigationBar({ handleShow, handleClose }) {
             <Navbar.Brand>
               <img
                 src={Bandcamp}
-                width="100px"
-                height="40px"
+                width="120px"
+                height="50px"
                 className="d-inline-block align-top"
                 alt="Bandcamp logo"
               />
@@ -45,30 +74,92 @@ export default function NavigationBar({ handleShow, handleClose }) {
           </Link>
         </div>
         <div className="search">
-          <form method="post">
-            <input
-              type="text"
-              name="subject"
-              class="bandcampSearch"
-              value=""
-              placeholder="Search"
-            />
-          </form>
+          <Form inline>
+            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+            <Button variant="outline-success">Search</Button>
+          </Form>
         </div>
-
-        {/* <Nav as={Link} onClick={handleShow}>
-            Signup
-          </Nav> */}
-        <div className="setlog">
-          <span style={{ cursor: "pointer" }} onClick={handleShow}>
-            Signup
-          </span>
-          {"         "}
-          <span style={{ cursor: "pointer" }} onClick={handleShow}>
-            Login
-          </span>
-        </div>
+        {
+          /* isLoggedIn() === "false" */
+          !user ? (
+            <>
+              <div className="nav-wrapper">
+                <span
+                  style={{ cursor: "pointer", fontSize: "16px" }}
+                  onClick={() => handleshow("signup")}
+                >
+                  Signup
+                </span>
+                {"         "}
+                <span
+                  style={{ cursor: "pointer", fontSize: "16px" }}
+                  onClick={() => handleshow("login")}
+                >
+                  Login
+                </span>
+              </div>
+            </>
+          ) : (
+            <>
+              {user && user.role === "fan" && (
+                <Link to="/me/collection">
+                  <i class="far fa-heart fa-2x"></i>
+                </Link>
+              )}
+              {user && user.role === "artist" && (
+                <Link to="/me/dash">
+                  <i class="fas fa-heart fa-2x"></i>
+                </Link>
+              )}
+              {user && (
+                //<span className="span-header">
+                <>
+                  <Link
+                    to={
+                      user.role === "fan"
+                        ? "/me/fanprofile"
+                        : "/me/artistprofile"
+                    }
+                  >
+                    <div className="wrap-profile">
+                      <img
+                        class="profile-img"
+                        src={
+                          user.profilePic ||
+                          "https://st4.depositphotos.com/4329009/19956/v/380/depositphotos_199564354-stock-illustration-creative-vector-illustration-default-avatar.jpg"
+                        }
+                        alt="profile"
+                        style={{ width: "36px" }}
+                        //onClick={() => history.push("/me/dash")}
+                      />
+                    </div>
+                  </Link>
+                  <i
+                    class="fas fa-sign-out-alt fa-2x"
+                    onClick={() => {
+                      localStorage.setItem("LoggedIn", false);
+                      history.push("/");
+                      dispatch({
+                        type: "UNSET_USER",
+                      });
+                      logout();
+                    }}
+                  ></i>
+                </>
+              )}
+            </>
+          )
+        }
       </Container>
+      <Modal show={show} onHide={handleClose}>
+        {currentModal === "login" && show ? (
+          <LoginModal handleClose={handleClose} />
+        ) : currentModal === "signup" && show ? (
+          <SignupModal handleClose={handleClose} />
+        ) : (
+          ""
+        )}
+      </Modal>
     </Navbar>
   );
 }
