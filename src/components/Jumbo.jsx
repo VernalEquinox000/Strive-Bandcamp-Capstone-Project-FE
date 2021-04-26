@@ -10,16 +10,23 @@ export default function Jumbo() {
     <div>
       <Jumbotron fluid>
         <Row
-          row
+        /* className="
           my-4
           no-gutters
           text-center
           row-cols-1
           row-cols-md-2
           row-cols-lg-4
-          row-cols-xl-6
+          row-cols-xl-6" */
         >
-          <Col sm={9}>
+          <Col
+            sm={9}
+            style={{
+              borderLeft: "3px solid black",
+              borderBottom: "3px solid black",
+              borderTop: "3px solid black",
+            }}
+          >
             <Card className="bg-dark text-white">
               <Card.Img src={Bc1} alt="Card image" />
               <Card.ImgOverlay>
@@ -32,7 +39,12 @@ export default function Jumbo() {
               </Card.ImgOverlay>
             </Card>
           </Col>
-          <Col sm={3}>
+          <Col
+            sm={3}
+            style={{
+              border: "3px solid black",
+            }}
+          >
             <Row>
               <Card className="bg-dark text-white">
                 <Card.Img src={Bc2} alt="Card image" />

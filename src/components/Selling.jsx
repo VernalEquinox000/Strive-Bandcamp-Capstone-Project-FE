@@ -12,15 +12,15 @@ export default function Selling() {
     try {
       setLoaderSelling(true);
       const response = await getAllUsers();
-      if (response.statusText === "OK") {
-        const data = await response.data;
-        console.log(data);
-        const filterArtists = data.filter((d) => d.role === "artist");
-        setArtists(filterArtists);
-        setLoaderSelling(false);
-      } else {
+      //if (response.statusText === "OK") {
+      const data = await response.data;
+      console.log(data);
+      const filterArtists = data.filter((d) => d.role === "artist");
+      setArtists(filterArtists);
+      setLoaderSelling(false);
+      /* } else {
         alert("something went wrong");
-      }
+      } */
     } catch (error) {
       setErrorSelling(error);
       setLoaderSelling(false);

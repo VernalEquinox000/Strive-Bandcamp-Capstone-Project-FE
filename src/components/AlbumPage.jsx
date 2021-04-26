@@ -8,6 +8,7 @@ import Player from "./Player";
 import AlbumSidePanel from "./ArtistSidePanel";
 import BuyModal from "./BuyModal";
 import CoverModal from "./CoverModal";
+import { dateConverter } from "../helpers/helpers";
 
 export default function AlbumPage() {
   const matchParams = useParams();
@@ -75,7 +76,14 @@ export default function AlbumPage() {
               <h2>{album.title}</h2>
 
               <h6 className="mb-5">
-                by <Link>{artist.artistName}</Link>
+                by{" "}
+                <Link
+                  to={{
+                    pathname: `/artist/${artist._id}`,
+                  }}
+                >
+                  {artist.artistName}
+                </Link>
               </h6>
               <Player file={selectedSong} />
               <h4 className="mt-5" onClick={() => handleshow("buy")}>
@@ -83,7 +91,7 @@ export default function AlbumPage() {
               </h4>
               <div className="mt-5">
                 {album.songs.map((song) => (
-                  <p class>
+                  <p class key={song._id}>
                     <span
                       className="song-span"
                       style={{ cursor: "pointer" }}
@@ -102,6 +110,9 @@ export default function AlbumPage() {
                 ))}
               </div>
               <p className="mt-5">{album.description}</p>
+              <p className="mt-5">
+                Release date: {dateConverter(album.releaseDate)}
+              </p>
               <div className="mt-5">
                 <h6>
                   <strong>[{album.tags + "  "}]</strong>

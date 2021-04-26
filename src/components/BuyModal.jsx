@@ -10,6 +10,12 @@ export default function BuyModal({ handleClose, album }) {
   console.log(user);
   console.log(data);
 
+  /*   const submitEdit = async (e) => {
+    e.preventDefault();
+    //try {
+    const response = await editUserMe({ albumsCollected });
+  }; */
+
   return (
     <Modal.Dialog>
       <Modal.Header closeButton>

@@ -4,6 +4,8 @@ import ArtistBar from "./ArtistBar";
 import { getUserById } from "../api/userApi";
 import { useParams, Link } from "react-router-dom";
 import ArtistSidePanel from "./ArtistSidePanel";
+import dateConverter from "../helpers/functions";
+
 export default function ArtistPage() {
   const matchParams = useParams();
   const [artist, setArtist] = useState(null);

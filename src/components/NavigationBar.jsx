@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Container, Modal } from "react-bootstrap";
+import {
+  Navbar,
+  Container,
+  Modal,
+  Form,
+  FormControl,
+  Button,
+} from "react-bootstrap";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import Bandcamp from "../assets/bandcamp.svg";
 import { useSelector, useDispatch } from "react-redux";
@@ -67,15 +74,10 @@ export default function NavigationBar() {
           </Link>
         </div>
         <div className="search">
-          <form method="post">
-            <input
-              type="text"
-              name="subject"
-              class="bandcampSearch"
-              value=""
-              placeholder="Search"
-            />
-          </form>
+          <Form inline>
+            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+            <Button variant="outline-success">Search</Button>
+          </Form>
         </div>
         {
           /* isLoggedIn() === "false" */

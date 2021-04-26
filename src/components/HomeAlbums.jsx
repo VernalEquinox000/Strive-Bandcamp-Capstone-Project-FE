@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Alert, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { getAllAlbums } from "../api/albumApi";
+import { dateConverter } from "../helpers/helpers";
+
 export default function HomeAlbums() {
   const [albums, setAlbums] = useState(null);
   const [loaderAlbums, setLoaderAlbums] = useState(true);
@@ -11,14 +13,14 @@ export default function HomeAlbums() {
     try {
       setLoaderAlbums(true);
       const response = await getAllAlbums();
-      if (response.statusText === "OK") {
-        const data = await response.data;
-        console.log(data);
-        setAlbums(data);
-        setLoaderAlbums(false);
-      } else {
+      // if (response.statusText === "OK") {
+      const data = await response.data;
+      console.log(data);
+      setAlbums(data);
+      setLoaderAlbums(false);
+      /* } else {
         alert("something went wrong");
-      }
+      } */
     } catch (error) {
       setErrorAlbums(error);
       setLoaderAlbums(false);
@@ -59,9 +61,16 @@ export default function HomeAlbums() {
                       activeClassName="active"
                     >
                       <Col className="col text-center mb-2 mb-lg-0 px-1">
-                        <div class="home-album position-relative">
+                        <div
+                          class="home-album position-relative"
+                          key={album._id}
+                        >
                           <img class="img-fluid rounded" src={album.cover} />
-                          <h6>{album.title}</h6>
+                          <p>
+                            <strong>{album.title}</strong>
+                            <br />
+                            {dateConverter(album.releaseDate)}
+                          </p>
                         </div>
                       </Col>
                     </Link>
