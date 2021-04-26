@@ -55,11 +55,11 @@ export default function LoginModal({ handleClose }) {
                   console.log(data);
                   setSubmitting(false);
                   localStorage.setItem("LoggedIn", true);
-                  if (isLoggedIn() === "true") {
-                    setUser();
-                    //history.push("/");
-                    handleClose();
-                  }
+                  //if (isLoggedIn() === "true") {
+                  setUser();
+                  //history.push("/");
+                  handleClose();
+                  //}
                 }
               } catch (error) {
                 console.log(error.response.data);

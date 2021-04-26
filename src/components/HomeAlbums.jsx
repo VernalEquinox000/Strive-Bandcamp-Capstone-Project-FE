@@ -66,7 +66,7 @@ export default function HomeAlbums() {
                           key={album._id}
                         >
                           <img class="img-fluid rounded" src={album.cover} />
-                          <p>
+                          <p className="home-album-title">
                             <strong>{album.title}</strong>
                             <br />
                             {dateConverter(album.releaseDate)}

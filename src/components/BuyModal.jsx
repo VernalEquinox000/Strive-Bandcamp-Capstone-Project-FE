@@ -23,7 +23,12 @@ export default function BuyModal({ handleClose, album }) {
       </Modal.Header>
 
       <Modal.Body>
-        <p>Modal body text goes here.</p>
+        <img src={album.cover} style={{ width: "100px " }} />
+        <p>
+          Includes high-quality download in MP3, FLAC and more. Paying
+          supporters also get unlimited streaming via the free Bandcamp app.
+          Have a gift card? Redeem it here{" "}
+        </p>
       </Modal.Body>
 
       <Modal.Footer>

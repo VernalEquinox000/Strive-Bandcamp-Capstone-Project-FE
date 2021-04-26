@@ -33,21 +33,21 @@ export default function NavigationBar() {
   const [currentModal, setCurrentModal] = useState(null);
 
   useEffect(() => {
-    if (isLoggedIn() === "true") {
-      dispatch(async (dispatch) => {
-        try {
-          const response = await getUserById("me");
-          if (response.statusText === "OK") {
-            dispatch({
-              type: "SET_USER",
-              payload: response.data,
-            });
-          }
-        } catch (error) {
-          console.log(error.response);
+    //if (isLoggedIn() === "true") {
+    dispatch(async (dispatch) => {
+      try {
+        const response = await getUserById("me");
+        if (response.statusText === "OK") {
+          dispatch({
+            type: "SET_USER",
+            payload: response.data,
+          });
         }
-      });
-    }
+      } catch (error) {
+        console.log(error.response);
+      }
+    });
+    //}
   }, []);
 
   /* const handleSubmit = async (e) => {
@@ -83,19 +83,21 @@ export default function NavigationBar() {
           /* isLoggedIn() === "false" */
           !user ? (
             <>
-              <span
-                style={{ cursor: "pointer", fontSize: "16px" }}
-                onClick={() => handleshow("signup")}
-              >
-                Signup
-              </span>
-              {"         "}
-              <span
-                style={{ cursor: "pointer", fontSize: "16px" }}
-                onClick={() => handleshow("login")}
-              >
-                Login
-              </span>
+              <div className="nav-wrapper">
+                <span
+                  style={{ cursor: "pointer", fontSize: "16px" }}
+                  onClick={() => handleshow("signup")}
+                >
+                  Signup
+                </span>
+                {"         "}
+                <span
+                  style={{ cursor: "pointer", fontSize: "16px" }}
+                  onClick={() => handleshow("login")}
+                >
+                  Login
+                </span>
+              </div>
             </>
           ) : (
             <>
@@ -105,7 +107,7 @@ export default function NavigationBar() {
                 </Link>
               )}
               {user && user.role === "artist" && (
-                <Link to="me/dash">
+                <Link to="/me/dash">
                   <i class="fas fa-heart fa-2x"></i>
                 </Link>
               )}
@@ -136,17 +138,7 @@ export default function NavigationBar() {
                     class="fas fa-sign-out-alt fa-2x"
                     onClick={() => {
                       localStorage.setItem("LoggedIn", false);
-                      /* if (
-                        location.pathname === "/profile/me" &&
-                        user.role === "patient"
-                      ) { */
                       history.push("/");
-                      /* } else if (
-                        location.pathname === "/profile/me" &&
-                        (user.role === "doctor" || user.role === "clinic")
-                      ) {
-                        history.push("/profile/" + user._id);
-                      } */
                       dispatch({
                         type: "UNSET_USER",
                       });

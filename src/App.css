@@ -1,7 +1,6 @@
 body {
   font: 13px/1.2307692308 "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  background-color: #ffe8d6;
 }
 
 .App {
@@ -71,14 +70,30 @@ body {
   width: 100%;
 }
 
-.song-span:hover {
-  color: red;
-}
-
 .icon-class {
   width: 32px !important;
 }
 
+.home-artist-name,
+.home-album-title,
+.artist-album-title,
+.album-album-title > a {
+  color: #000000;
+}
+
+.home-artist-name:hover,
+.song-span:hover {
+  color: #000000;
+  text-decoration: underline;
+}
+
+.song-span .fas:hover {
+  color: grey;
+}
+
+div.home-artist:hover > img {
+  border: 3px solid black;
+}
 /* .wrap-profile {
   position: relative;
   border-radius: 50%;
@@ -116,3 +131,71 @@ body {
   margin-right: 20px;
 }
  */
+
+.wrap-prof-coll {
+  position: relative;
+  border-radius: 50%;
+  width: 152px;
+  height: 152px;
+}
+
+.img-prof-coll {
+  position: absolute;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.footer {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+
+  padding-top: 80px;
+  padding-bottom: 30px;
+  background-color: #477987;
+  margin-right: 10px;
+}
+
+.footer .row p {
+  font-size: 13px;
+  font-weight: 500;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer .row p > a:link {
+  font-size: 13px;
+  font-weight: 500;
+  color: #ffffff;
+  text-decoration: none;
+  /* margin-left: 1rem; */
+}
+
+.footer .row p > a:visited {
+  font-size: 13px;
+  font-weight: 500;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer .row p > a:hover {
+  font-size: 13px;
+  font-weight: 500;
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.footer .row p > a:active {
+  font-size: 13px;
+  font-weight: 500;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer .row p > select {
+  font-size: 13px;
+  font-weight: 500;
+  color: #000000;
+  text-decoration: none;
+  /* margin-right: 1rem; */
+}

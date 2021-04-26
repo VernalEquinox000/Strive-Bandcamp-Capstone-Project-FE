@@ -66,7 +66,9 @@ export default function Selling() {
                             class="img-fluid rounded"
                             src={artist.profilePic}
                           />
-                          <h6>{artist.artistName}</h6>
+                          <h6 className="home-artist-name">
+                            {artist.artistName}
+                          </h6>
                         </div>
                       </Col>
                     </Link>

@@ -47,7 +47,7 @@ export default function ArtistPage() {
       {loader ? (
         <Container className="mb-5">
           <Row>
-            <Col sm={12}>
+            <Col sm={{ span: 10, offset: 1 }}>
               <Spinner animation="grow" variant="dark" />
             </Col>
           </Row>
@@ -59,7 +59,7 @@ export default function ArtistPage() {
         </>
       )}
       <Container className="d-flex flex-column justify-content-center align-content-center">
-        <Row className="row-cols-1 row-cols-sm-6 row-cols-md-6 artist-row">
+        <Row className="offset-1 row-cols-1 row-cols-sm-6 row-cols-md-6 artist-row">
           {loader ? (
             [0, 1, 2, 3, 4, 5].map((item) => (
               <Col className="col text-center mb-2 mb-lg-0 px-1" key={item}>
@@ -83,7 +83,7 @@ export default function ArtistPage() {
                         key={album._id}
                       >
                         <img class="img-fluid rounded" src={album.cover} />
-                        <h6>{album.title}</h6>
+                        <h6 className="artist-album-title">{album.title}</h6>
                       </div>
                     </Link>
                   </Col>
@@ -102,12 +102,14 @@ export default function ArtistPage() {
               <>
                 {error && <Alert variant="danger">{error}</Alert>}
                 {artist && (
-                  <ArtistSidePanel
-                    pic={artist.profilePic}
-                    name={artist.artistName}
-                    desc={artist.description}
-                    link={artist.url[0]}
-                  />
+                  <Col sm={{ span: 2 }} className="float-right">
+                    <ArtistSidePanel
+                      pic={artist.profilePic}
+                      name={artist.artistName}
+                      desc={artist.description}
+                      link={artist.url[0]}
+                    />
+                  </Col>
                 )}
               </>
             )}

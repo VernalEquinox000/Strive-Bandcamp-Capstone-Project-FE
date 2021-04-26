@@ -73,9 +73,9 @@ export default function AlbumPage() {
         <Container className="d-flex flex-column justify-content-center align-content-center">
           <Row className="text-left">
             <Col sm={{ span: 4, offset: 1 }}>
-              <h2>{album.title}</h2>
+              <h2 className="album-album-title">{album.title}</h2>
 
-              <h6 className="mb-5">
+              <h6 className="album-album-title mb-5">
                 by{" "}
                 <Link
                   to={{
@@ -105,7 +105,7 @@ export default function AlbumPage() {
                         {/* {songMinSec(song.duration)} */}
                       </strong>
                     </span>
-                    <span>Buy track €{song.price}</span>
+                    {/* <span>Buy track €{song.price}</span> */}
                   </p>
                 ))}
               </div>
