@@ -37,3 +37,27 @@ export const getAllAlbums = async () => {
     console.log(error);
   }
 };
+
+//download mp3
+export const getMp3 = async (albumId, songId) => {
+  try {
+    const response = await axios.post(
+      `${process.env.REACT_APP_BE_URL}/albums/${albumId}/songs/${songId}/convertIt`
+    );
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//download wav
+export const getWav = async (albumId, songId) => {
+  try {
+    const response = await axios.get(
+      `${process.env.REACT_APP_BE_URL}/albums/${albumId}/songs/${songId}/getSongLink`
+    );
+    return window.open(response);
+  } catch (error) {
+    console.log(error);
+  }
+};

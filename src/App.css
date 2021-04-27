@@ -3,10 +3,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-.App {
-  text-align: center;
-}
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -94,6 +90,14 @@ body {
 div.home-artist:hover > img {
   border: 3px solid black;
 }
+
+.navContainer {
+  padding-top: 20px;
+}
+.modal-content {
+  border: none;
+  padding: 20px;
+}
 /* .wrap-profile {
   position: relative;
   border-radius: 50%;
@@ -149,7 +153,8 @@ div.home-artist:hover > img {
 
 .footer {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
-
+  /* position: fixed; */
+  bottom: 0;
   padding-top: 80px;
   padding-bottom: 30px;
   background-color: #477987;
@@ -198,4 +203,12 @@ div.home-artist:hover > img {
   color: #000000;
   text-decoration: none;
   /* margin-right: 1rem; */
+}
+
+.btn-primary {
+  background-color: #6299a8;
+}
+
+.btn-primary:hover {
+  background-color: #6299a8;
 }

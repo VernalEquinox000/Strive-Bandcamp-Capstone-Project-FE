@@ -7,7 +7,7 @@ import Bc4 from "../assets/bc4.jpeg";
 
 export default function Jumbo() {
   return (
-    <div>
+    <div className="animate__animated animate__fadeInUp">
       <Jumbotron fluid>
         <Row
         /* className="
@@ -30,12 +30,9 @@ export default function Jumbo() {
             <Card className="bg-dark text-white">
               <Card.Img src={Bc1} alt="Card image" />
               <Card.ImgOverlay>
-                <Card.Title>Card title</Card.Title>
-                <Card.Text>
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content.
-                </Card.Text>
-                <Card.Text>Last updated 3 mins ago</Card.Text>
+                <Card.Title>New Music from all over the world!</Card.Title>
+                <Card.Text>Psycho-folk stuff for your ears</Card.Text>
+                <Card.Text>April 26th,2021</Card.Text>
               </Card.ImgOverlay>
             </Card>
           </Col>
@@ -49,12 +46,9 @@ export default function Jumbo() {
               <Card className="bg-dark text-white">
                 <Card.Img src={Bc2} alt="Card image" />
                 <Card.ImgOverlay>
-                  <Card.Title>Card title</Card.Title>
-                  <Card.Text>
-                    This is a wider card with supporting text below as a natural
-                    lead-in to additional content.
-                  </Card.Text>
-                  <Card.Text>Last updated 3 mins ago</Card.Text>
+                  <Card.Title>Hot Stuff</Card.Title>
+                  <Card.Text>How about some death metal?!</Card.Text>
+                  <Card.Text>April 24th, 2021</Card.Text>
                 </Card.ImgOverlay>
               </Card>
             </Row>
@@ -62,12 +56,9 @@ export default function Jumbo() {
               <Card className="bg-dark text-white">
                 <Card.Img src={Bc3} alt="Card image" />
                 <Card.ImgOverlay>
-                  <Card.Title>Card title</Card.Title>
-                  <Card.Text>
-                    This is a wider card with supporting text below as a natural
-                    lead-in to additional content.
-                  </Card.Text>
-                  <Card.Text>Last updated 3 mins ago</Card.Text>
+                  <Card.Title>Discover!</Card.Title>
+                  <Card.Text>The best of the week</Card.Text>
+                  <Card.Text>April 22nd, 2021</Card.Text>
                 </Card.ImgOverlay>
               </Card>
             </Row>
@@ -75,12 +66,9 @@ export default function Jumbo() {
               <Card className="bg-dark text-white">
                 <Card.Img src={Bc4} alt="Card image" />
                 <Card.ImgOverlay>
-                  <Card.Title>Card title</Card.Title>
-                  <Card.Text>
-                    This is a wider card with supporting text below as a natural
-                    lead-in to additional content.
-                  </Card.Text>
-                  <Card.Text>Last updated 3 mins ago</Card.Text>
+                  <Card.Title>Vinyl sales stonk!</Card.Title>
+                  <Card.Text>Highest sales in the past 100 years</Card.Text>
+                  <Card.Text>April 20th, 2021</Card.Text>
                 </Card.ImgOverlay>
               </Card>
             </Row>

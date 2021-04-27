@@ -10,13 +10,13 @@ import {
 import { Link, useHistory, useLocation } from "react-router-dom";
 import Bandcamp from "../assets/bandcamp.svg";
 import { useSelector, useDispatch } from "react-redux";
-import { isLoggedIn } from "../helpers/functions";
+//import { isLoggedIn } from "../helpers/functions";
 import { getUserById, logout } from "../api/userApi";
 import SignupModal from "./SignupModal";
 import LoginModal from "./LoginModal";
 
 export default function NavigationBar() {
-  const location = useLocation();
+  //const location = useLocation();
   const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -31,18 +31,26 @@ export default function NavigationBar() {
     setCurrentModal(modalType);
   };
   const [currentModal, setCurrentModal] = useState(null);
+  const [search, setSearch] = useState("");
+
+  const handleKey = (e) => {
+    if (e.keyCode === 13 || e.key === "Enter") {
+      dispatch({ type: "SET_SEARCH", payload: search });
+      history.push("/searchresults");
+    }
+  };
 
   useEffect(() => {
     //if (isLoggedIn() === "true") {
     dispatch(async (dispatch) => {
       try {
         const response = await getUserById("me");
-        if (response.statusText === "OK") {
-          dispatch({
-            type: "SET_USER",
-            payload: response.data,
-          });
-        }
+        //if (response.statusText === "OK") {
+        dispatch({
+          type: "SET_USER",
+          payload: response.data,
+        });
+        // }
       } catch (error) {
         console.log(error.response);
       }
@@ -58,7 +66,11 @@ export default function NavigationBar() {
   }; */
 
   return (
-    <Navbar bg="light" variant="light">
+    <Navbar
+      bg="light"
+      variant="light"
+      className="animate__animated animate__fadeInDown"
+    >
       <Container className="navContainer">
         <div className="logo">
           <Link to="/">
@@ -75,8 +87,23 @@ export default function NavigationBar() {
         </div>
         <div className="search">
           <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="outline-success">Search</Button>
+            <FormControl
+              type="text"
+              placeholder="Search"
+              className="mr-sm-2"
+              value={search}
+              onKeyDown={handleKey}
+              onChange={(e) => setSearch(e.currentTarget.value)}
+            />
+            <Button
+              variant="outline-success"
+              onClick={() => {
+                dispatch({ type: "SET_SEARCH", payload: search });
+                history.push("searchresults");
+              }}
+            >
+              Search
+            </Button>
           </Form>
         </div>
         {
@@ -111,8 +138,8 @@ export default function NavigationBar() {
                   <i class="fas fa-heart fa-2x"></i>
                 </Link>
               )}
+
               {user && (
-                //<span className="span-header">
                 <>
                   <Link
                     to={

@@ -51,6 +51,9 @@ export default function ArtistDash() {
               <p>
                 <h5>The first step towards Bandcamp prosperity...</h5>
                 <h6>... is of course to add some music:</h6>
+                {user.albums.map((album) => (
+                  <h5>{album.title}</h5>
+                ))}
               </p>
               <Link to="/me/addAlbum">
                 <Button variant="primary">Add Album</Button>
@@ -59,12 +62,12 @@ export default function ArtistDash() {
                 Add Track
               </Button>
 
-              <p className="mt-5">
+              {/* <p className="mt-5">
                 <h6>Your albums:</h6>
-                <Link to={{ pathname: `/me/album/${user.albums[0]}` }}>
+                <Link to={{ pathname: `/me/album/${user.albums[0]}` }}></Link>
                   {user.albums[0]}
-                </Link>
-              </p>
+                
+              </p> */}
             </Col>
             <Col sm={2}>
               <img src={Neko} style={{ width: "150px" }} alt="neko" />

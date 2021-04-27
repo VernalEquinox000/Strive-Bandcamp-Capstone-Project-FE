@@ -16,7 +16,6 @@ function App() {
     <div className="App">
       <Router>
         <NavigationBar />
-
         <Route path="/" exact component={Home} />
         <Route path="/artist/:id" exact component={ArtistPage} />
         <Route

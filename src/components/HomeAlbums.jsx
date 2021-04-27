@@ -35,7 +35,7 @@ export default function HomeAlbums() {
   }, []);
 
   return (
-    <div>
+    <div className="animate__animated animate__fadeInUp">
       <Container className="d-flex flex-column justify-content-center align-content-center mt-5 mb-5">
         <Row className="row-cols-1 text-left">
           <h3>Latest albums</h3>
@@ -62,7 +62,7 @@ export default function HomeAlbums() {
                     >
                       <Col className="col text-center mb-2 mb-lg-0 px-1">
                         <div
-                          class="home-album position-relative"
+                          class="home-album position-relative animate__fadeInDown"
                           key={album._id}
                         >
                           <img class="img-fluid rounded" src={album.cover} />

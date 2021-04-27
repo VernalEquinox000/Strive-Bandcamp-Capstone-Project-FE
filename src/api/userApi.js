@@ -84,6 +84,7 @@ export const getAllUsers = async () => {
   }
 }; */
 
+//PUT user me
 export const editUserMe = async (body) => {
   try {
     const response = await axios.put(
@@ -97,4 +98,13 @@ export const editUserMe = async (body) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+//GET artist query
+
+export const getArtists = async (query) => {
+  const response = await axios.get(
+    `${process.env.REACT_APP_BE_URL}/users?role=artist&artistName=${query}`
+  );
+  return response;
 };
