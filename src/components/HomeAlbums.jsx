@@ -65,7 +65,11 @@ export default function HomeAlbums() {
                           class="home-album position-relative animate__fadeInDown"
                           key={album._id}
                         >
-                          <img class="img-fluid rounded" src={album.cover} />
+                          <img
+                            class="img-fluid rounded"
+                            src={album.cover}
+                            style={{ height: "150px", width: "150px" }}
+                          />
                           <p className="home-album-title">
                             <strong>{album.title}</strong>
                             <br />

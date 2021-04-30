@@ -128,52 +128,61 @@ export default function NavigationBar() {
             </>
           ) : (
             <>
-              {user && user.role === "fan" && (
-                <Link to="/me/collection">
-                  <i class="far fa-heart fa-2x"></i>
-                </Link>
-              )}
-              {user && user.role === "artist" && (
-                <Link to="/me/dash">
-                  <i class="fas fa-heart fa-2x"></i>
-                </Link>
-              )}
-
-              {user && (
-                <>
-                  <Link
-                    to={
-                      user.role === "fan"
-                        ? "/me/fanprofile"
-                        : "/me/artistprofile"
-                    }
-                  >
-                    <div className="wrap-profile">
-                      <img
-                        class="profile-img"
-                        src={
-                          user.profilePic ||
-                          "https://st4.depositphotos.com/4329009/19956/v/380/depositphotos_199564354-stock-illustration-creative-vector-illustration-default-avatar.jpg"
-                        }
-                        alt="profile"
-                        style={{ width: "36px" }}
-                        //onClick={() => history.push("/me/dash")}
-                      />
-                    </div>
+              <div
+                className="nav-wrapper d-flex"
+                style={{
+                  justifyContent: "space-between",
+                  width: "200px",
+                  alignItems: "center",
+                }}
+              >
+                {user && user.role === "fan" && (
+                  <Link to="/me/collection">
+                    <i class="far fa-heart fa-2x"></i>
                   </Link>
-                  <i
-                    class="fas fa-sign-out-alt fa-2x"
-                    onClick={() => {
-                      localStorage.setItem("LoggedIn", false);
-                      history.push("/");
-                      dispatch({
-                        type: "UNSET_USER",
-                      });
-                      logout();
-                    }}
-                  ></i>
-                </>
-              )}
+                )}
+                {user && user.role === "artist" && (
+                  <Link to="/me/dash">
+                    <i class="fas fa-heart fa-2x"></i>
+                  </Link>
+                )}
+
+                {user && (
+                  <>
+                    <Link
+                      to={
+                        user.role === "fan"
+                          ? "/me/fanprofile"
+                          : "/me/artistprofile"
+                      }
+                    >
+                      <div className="wrap-profile">
+                        <img
+                          class="profile-img"
+                          src={
+                            user.profilePic ||
+                            "https://st4.depositphotos.com/4329009/19956/v/380/depositphotos_199564354-stock-illustration-creative-vector-illustration-default-avatar.jpg"
+                          }
+                          alt="profile"
+                          style={{ width: "36px" }}
+                          //onClick={() => history.push("/me/dash")}
+                        />
+                      </div>
+                    </Link>
+                    <i
+                      class="fas fa-sign-out-alt fa-2x"
+                      onClick={() => {
+                        localStorage.setItem("LoggedIn", false);
+                        history.push("/");
+                        dispatch({
+                          type: "UNSET_USER",
+                        });
+                        logout();
+                      }}
+                    ></i>
+                  </>
+                )}
+              </div>
             </>
           )
         }

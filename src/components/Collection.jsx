@@ -74,7 +74,10 @@ export default function Collection() {
                         {album.songs.map((song) => (
                           <ListGroupItem key={song._id}>
                             {song.songTitle} -{" "}
-                            <span onClick={() => getWav(album._id, song._id)}>
+                            <span
+                              style={{ cursor: "pointer", fontSize: "12px" }}
+                              onClick={() => getWav(album._id, song._id)}
+                            >
                               wav
                             </span>
                             {"   "}
@@ -83,6 +86,7 @@ export default function Collection() {
                               download={getFile.saveAsFileName}
                             ></a> */}
                             <span
+                              style={{ cursor: "pointer", fontSize: "12px" }}
                               onClick={() =>
                                 getMp3(album._id, song._id).download
                               }

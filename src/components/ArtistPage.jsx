@@ -55,11 +55,22 @@ export default function ArtistPage() {
       ) : (
         <>
           {error && <Alert variant="danger">{error}</Alert>}
-          {artist && <ArtistBar key={artist._id} header={artist.headerPic} />}
+          {artist && (
+            <div>
+              <ArtistBar key={artist._id} header={artist.headerPic} />
+            </div>
+          )}
         </>
       )}
-      <Container className="d-flex flex-column justify-content-center align-content-center">
-        <Row className="offset-1 row-cols-1 row-cols-sm-6 row-cols-md-6 artist-row">
+      <Container
+      //className="d-flex justify-content-between align-content-center"
+      >
+        <Row
+          className="row-cols-1 row-cols-sm-6 row-cols-md-6 artist-row"
+          style={{
+            width: "100%",
+          }}
+        >
           {loader ? (
             [0, 1, 2, 3, 4, 5].map((item) => (
               <Col className="col text-center mb-2 mb-lg-0 px-1" key={item}>
@@ -78,11 +89,12 @@ export default function ArtistPage() {
                       }}
                       artist={artist}
                     >
-                      <div
-                        class="home-artist position-relative"
-                        key={album._id}
-                      >
-                        <img class="img-fluid rounded" src={album.cover} />
+                      <div class=" position-relative" key={album._id}>
+                        <img
+                          class="img-fluid rounded"
+                          src={album.cover}
+                          style={{ height: "150px", objectFit: "contain" }}
+                        />
                         <h6 className="artist-album-title">{album.title}</h6>
                       </div>
                     </Link>
@@ -102,7 +114,7 @@ export default function ArtistPage() {
               <>
                 {error && <Alert variant="danger">{error}</Alert>}
                 {artist && (
-                  <Col sm={{ span: 2 }} className="float-right">
+                  <Col sm={2} className="flex-end">
                     <ArtistSidePanel
                       pic={artist.profilePic}
                       name={artist.artistName}

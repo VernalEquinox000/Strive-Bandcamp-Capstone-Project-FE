@@ -42,18 +42,21 @@ export default function ArtistDash() {
   return (
     user && (
       <div>
-        <Container className="mt-5">
+        <Container className="mt-5 mb-5">
           <Row className="mt-5">
             <h2>Welcome {user.artistName}! This is your dashboard.</h2>
           </Row>
-          <Row className="mt-5">
+          <Row className="mt-5 mb-5">
             <Col sm={6}>
               <p>
                 <h5>The first step towards Bandcamp prosperity...</h5>
                 <h6>... is of course to add some music:</h6>
                 {user.albums.map((album) => (
-                  <h5>{album.title}</h5>
-                ))}
+                  <h5 style={{ cursor: "pointer" }}>
+                    {album.title}
+                    {"   "}- edit
+                  </h5>
+                ))}{" "}
               </p>
               <Link to="/me/addAlbum">
                 <Button variant="primary">Add Album</Button>

@@ -65,6 +65,7 @@ export default function Selling() {
                           <img
                             class="img-fluid rounded"
                             src={artist.profilePic}
+                            style={{ height: "150px", width: "150px" }}
                           />
                           <h6 className="home-artist-name">
                             {artist.artistName}

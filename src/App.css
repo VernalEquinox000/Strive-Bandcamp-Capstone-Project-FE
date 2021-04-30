@@ -87,7 +87,8 @@ body {
   color: grey;
 }
 
-div.home-artist:hover > img {
+div.home-artist:hover > img,
+div.home-album:hover > img {
   border: 3px solid black;
 }
 
@@ -211,4 +212,12 @@ div.home-artist:hover > img {
 
 .btn-primary:hover {
   background-color: #6299a8;
+}
+
+a .fa-heart {
+  color: #000000;
+}
+
+a .fa-heart:hover {
+  color: red;
 }

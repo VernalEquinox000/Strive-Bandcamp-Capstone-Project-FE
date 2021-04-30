@@ -72,7 +72,7 @@ export default function AlbumPage() {
         )}
         <Container className="d-flex flex-column justify-content-center align-content-center">
           <Row className="text-left">
-            <Col sm={{ span: 4, offset: 1 }}>
+            <Col sm={4}>
               <h2 className="album-album-title">{album.title}</h2>
 
               <h6 className="album-album-title mb-5">
@@ -86,7 +86,11 @@ export default function AlbumPage() {
                 </Link>
               </h6>
               <Player file={selectedSong} />
-              <h4 className="mt-5" onClick={() => handleshow("buy")}>
+              <h4
+                className="mt-5"
+                style={{ cursor: "pointer" }}
+                onClick={() => handleshow("buy")}
+              >
                 Buy Digital Album €5 {/* add album price in BE */}
               </h4>
               <div className="mt-5">
