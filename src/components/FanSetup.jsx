@@ -3,9 +3,11 @@ import { Formik } from "formik";
 import React from "react";
 import { Container, Form } from "react-bootstrap";
 import { editUserMe } from "../api/userApi";
+import { useSelector } from "react-redux";
 
-export default function FanSetup(user) {
+export default function FanSetup() {
   //const [user, setUser] = useState(user);
+  const user = useSelector((state) => state.user);
   return (
     user && (
       <Container>
@@ -13,11 +15,8 @@ export default function FanSetup(user) {
         <Formik
           initialValues={{
             email: user.email,
-            password: "",
-            username: "",
-            address: "",
-            city: "",
-            state: "",
+            username: user.username,
+            address: user.address,
 
             //role: userType, > add user.role="fan"
           }}
@@ -41,7 +40,7 @@ export default function FanSetup(user) {
               <Form>
                 <Form.Group controlId="exampleForm.ControlInput1">
                   <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder="name@example.com" />
+                  <Form.Control type="email" placeholder={user.email} />
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlInput1">
                   <Form.Label>Email address</Form.Label>
