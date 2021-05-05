@@ -3,7 +3,7 @@ import { Container, Form, Button } from "react-bootstrap";
 import { editUserMe } from "../api/userApi";
 import { useSelector } from "react-redux";
 
-export default function FanSetup() {
+export default function ArtistSetup() {
   const user = useSelector((state) => state.user);
   return (
     user && (
