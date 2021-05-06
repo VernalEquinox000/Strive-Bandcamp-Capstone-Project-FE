@@ -5,6 +5,16 @@ import { useSelector } from "react-redux";
 
 export default function ArtistSetup() {
   const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user);
+  const [email, setEmail] = useState(user.email);
+  const [username, setUsername] = useState(user.username);
+  const [artistname, setArtistname] = useState(user.artistName || "");
+  const [password, setPassword] = useState(user.password);
+  const [address, setAddress] = useState(user.address || "");
+  const [city, setCity] = useState(user.city || "");
+  const [state, setState] = useState(user.state || "");
+  const [url, setUrl] = useState(user.url || "");
+  const [description, setDescription] = useState(user.description || "");
   return (
     user && (
       <Container>
@@ -15,6 +25,14 @@ export default function ArtistSetup() {
             <Form.Group controlId="exampleForm.ControlInput1">
               <Form.Label>Email address</Form.Label>
               <Form.Control type="email" placeholder={user.email} />
+            </Form.Group>
+            <Form.Group controlId="exampleForm.ControlInput1">
+              <Form.Label>Username</Form.Label>
+              <Form.Control type="username" placeholder={user.username} />
+            </Form.Group>
+            <Form.Group controlId="exampleForm.ControlInput1">
+              <Form.Label>Artist Name</Form.Label>
+              <Form.Control type="artistname" placeholder={user.username} />
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlInput1">
               <Form.Label>Password</Form.Label>
