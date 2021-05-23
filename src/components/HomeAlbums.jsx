@@ -37,10 +37,10 @@ export default function HomeAlbums() {
   return (
     <div className="animate__animated animate__fadeInUp">
       <Container className="d-flex flex-column justify-content-center align-content-center mt-5 mb-5">
-        <Row className="row-cols-1 text-left">
+        <Row className="text-md-left text-sm-center">
           <h3>Latest albums</h3>
         </Row>
-        <Row className="row-cols-1 row-cols-sm-6 row-cols-md-6 artist-row">
+        <Row className="row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-6 artist-row">
           {loaderAlbums ? (
             [0, 1, 2, 3, 4, 5].map((item) => (
               <Col className="col text-center mb-2 mb-lg-0 px-1" key={item}>
@@ -68,7 +68,7 @@ export default function HomeAlbums() {
                           <img
                             class="img-fluid rounded"
                             src={album.cover}
-                            style={{ height: "150px", width: "150px" }}
+                            style={{ height: "100%", width: "100%" }}
                           />
                           <p className="home-album-title">
                             <strong>{album.title}</strong>

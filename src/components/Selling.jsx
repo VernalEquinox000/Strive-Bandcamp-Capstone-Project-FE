@@ -12,15 +12,15 @@ export default function Selling() {
     try {
       setLoaderSelling(true);
       const response = await getAllUsers();
-      //if (response.statusText === "OK") {
-      const data = await response.data;
-      console.log(data);
-      const filterArtists = data.filter((d) => d.role === "artist");
-      setArtists(filterArtists);
-      setLoaderSelling(false);
-      /* } else {
+      if (response.statusText === "OK") {
+        const data = await response.data;
+        console.log(data);
+        const filterArtists = data.filter((d) => d.role === "artist");
+        setArtists(filterArtists);
+        setLoaderSelling(false);
+      } else {
         alert("something went wrong");
-      } */
+      }
     } catch (error) {
       setErrorSelling(error);
       setLoaderSelling(false);
@@ -40,7 +40,7 @@ export default function Selling() {
         <Row className="row-cols-1 text-left">
           <h3>Featured Artists</h3>
         </Row>
-        <Row className="row-cols-1 row-cols-sm-6 row-cols-md-6 artist-row">
+        <Row className="row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-6 artist-row">
           {loaderSelling ? (
             [0, 1, 2, 3, 4, 5].map((item) => (
               <Col className="col text-center mb-2 mb-lg-0 px-1" key={item}>
@@ -65,7 +65,7 @@ export default function Selling() {
                           <img
                             class="img-fluid rounded"
                             src={artist.profilePic}
-                            style={{ height: "150px", width: "150px" }}
+                            style={{ height: "100%", width: "100%" }}
                           />
                           <h6 className="home-artist-name">
                             {artist.artistName}
