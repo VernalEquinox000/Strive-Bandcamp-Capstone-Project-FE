@@ -10,25 +10,22 @@ export default function Jumbo() {
     <div className="animate__animated animate__fadeInUp">
       <Jumbotron fluid>
         <Row
-        /* className="
-          my-4
-          no-gutters
-          text-center
+          className="
           row-cols-1
-          row-cols-md-2
-          row-cols-lg-4
-          row-cols-xl-6" */
+          "
         >
           <Col
-            sm={9}
-            style={{
+            lg={9}
+            md={12}
+
+            /* style={{margin="0",
               borderLeft: "3px solid black",
               borderBottom: "3px solid black",
               borderTop: "3px solid black",
-            }}
+            }} */
           >
             <Card className="bg-dark text-white">
-              <Card.Img src={Bc1} alt="Card image" />
+              <Card.Img src={Bc1} alt="Card image" style={{ width: "100%" }} />
               <Card.ImgOverlay>
                 <Card.Title>New Music from all over the world!</Card.Title>
                 <Card.Text>Psycho-folk stuff for your ears</Card.Text>
@@ -37,10 +34,12 @@ export default function Jumbo() {
             </Card>
           </Col>
           <Col
-            sm={3}
-            style={{
+            className="d-none d-md-block"
+            lg={3}
+
+            /* style={{
               border: "3px solid black",
-            }}
+            }} */
           >
             <Row>
               <Card className="bg-dark text-white">

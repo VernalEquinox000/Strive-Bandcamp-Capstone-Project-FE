@@ -4,8 +4,8 @@ import { Container, Row, Col } from "react-bootstrap";
 export default function FooterSignup() {
   return (
     <Container fluid className="footer">
-      <Row className="text-left">
-        <Col className="offset-1 col-3 sm-col-1 md-col-2 lg-col-3">
+      <Row className="text-left row-cols-1 row-cols-sm-4">
+        <Col className="offset-1" col={2} sm={3}>
           <p>
             <a href="#" alt="About">
               About Us
@@ -55,7 +55,11 @@ export default function FooterSignup() {
             <br />
           </p>
         </Col>
-        <Col className="col-3 sm-col-1 md-col-2 lg-col-3">
+        <Col
+          className="offset-1 offset-sm-none offset-md-none offset-lg-none"
+          col={2}
+          sm={3}
+        >
           <p>
             <a href="#" alt="gift">
               Gift Cards
@@ -89,7 +93,11 @@ export default function FooterSignup() {
             <br />
           </p>
         </Col>
-        <Col className="offset-1 col-3 sm-col-1 md-col-2 lg-col-3">
+        <Col
+          className="offset-1 offset-sm-none offset-md-none offset-lg-none"
+          col={2}
+          sm={3}
+        >
           <p>
             View:{" "}
             <a href="#" alt="coll">
