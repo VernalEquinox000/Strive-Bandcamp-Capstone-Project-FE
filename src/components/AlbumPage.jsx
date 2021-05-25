@@ -67,12 +67,14 @@ export default function AlbumPage() {
     artist &&
     album && (
       <div>
-        {<ArtistBar key={artist._id} header={artist.headerPic} /> || (
-          <Spinner animation="grow" variant="dark" />
-        )}
         <Container className="d-flex flex-column justify-content-center align-content-center">
-          <Row className="text-left">
-            <Col sm={4}>
+          <Row className=" row-cols-1  mt-5">
+            {<ArtistBar key={artist._id} header={artist.headerPic} /> || (
+              <Spinner animation="grow" variant="dark" />
+            )}
+          </Row>
+          <Row className="text-left offset-1 row-cols-1 row-cols-sm-2 row-cols-md-3 mt-5">
+            <Col sm={{ span: 12 }} md={{ span: 4 }}>
               <h2 className="album-album-title">{album.title}</h2>
 
               <h6 className="album-album-title mb-5">
@@ -123,7 +125,7 @@ export default function AlbumPage() {
                 </h6>
               </div>
             </Col>
-            <Col sm={{ span: 4 }}>
+            <Col sm={{ span: 12 }} md={{ span: 4 }}>
               {(
                 <Image
                   style={{ width: "300px" }}
@@ -135,7 +137,7 @@ export default function AlbumPage() {
                 />
               ) || <Spinner animation="grow" variant="dark" />}
             </Col>
-            <Col sm={{ span: 2 }}>
+            <Col sm={{ span: 12 }} md={{ span: 2 }}>
               {(
                 <AlbumSidePanel
                   pic={artist.profilePic}
