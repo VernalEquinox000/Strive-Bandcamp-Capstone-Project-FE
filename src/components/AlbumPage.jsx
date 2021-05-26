@@ -73,8 +73,8 @@ export default function AlbumPage() {
               <Spinner animation="grow" variant="dark" />
             )}
           </Row>
-          <Row className="text-left offset-1 row-cols-1 row-cols-sm-2 row-cols-md-3 mt-5">
-            <Col sm={{ span: 12 }} md={{ span: 4 }}>
+          <Row className="text-left row-cols-1 row-cols-sm-2 row-cols-md-3 mt-5">
+            <Col sm={{ span: 12 }} md={{ span: 6 }}>
               <h2 className="album-album-title">{album.title}</h2>
 
               <h6 className="album-album-title mb-5">
