@@ -68,12 +68,12 @@ export default function AlbumPage() {
     album && (
       <div>
         <Container className="d-flex flex-column justify-content-center align-content-center">
-          <Row className=" row-cols-1  mt-5">
+          <Row className=" row-cols-1 mx-0">
             {<ArtistBar key={artist._id} header={artist.headerPic} /> || (
               <Spinner animation="grow" variant="dark" />
             )}
           </Row>
-          <Row className="text-left row-cols-1 row-cols-sm-2 row-cols-md-3 mt-5">
+          <Row className="text-left row-cols-1 row-cols-sm-2 row-cols-md-3 mt-5 mx-0">
             <Col sm={{ span: 12 }} md={{ span: 6 }}>
               <h2 className="album-album-title">{album.title}</h2>
 
