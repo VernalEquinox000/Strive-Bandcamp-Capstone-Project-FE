@@ -84,7 +84,7 @@ export default function AlbumPage() {
             className="text-left row-cols-1 row-cols-sm-2 row-cols-md-3 mt-5"
             style={{ margin: "25px" }}
           >
-            <Col sm={{ span: 10 }} md={{ span: 5 }}>
+            <Col xs={{ span: 10 }} md={{ span: 5 }}>
               <h2 className="album-album-title">{album.title}</h2>
 
               <h6 className="album-album-title mb-5">
@@ -135,7 +135,7 @@ export default function AlbumPage() {
                 </h6>
               </div>
             </Col>
-            <Col className="d-none d-sm-block" md={{ span: 5 }}>
+            <Col xs={{ span: 12, order: 12 }} md={{ span: 5, order: 1 }}>
               {(
                 <Image
                   style={{ width: "300px" }}
@@ -147,7 +147,7 @@ export default function AlbumPage() {
                 />
               ) || <Spinner animation="grow" variant="dark" />}
             </Col>
-            <Col md={{ span: 2 }}>
+            <Col xs={{ span: 2, order: 1 }} md={{ span: 2, order: 12 }}>
               {(
                 <AlbumSidePanel
                   pic={artist.profilePic}
