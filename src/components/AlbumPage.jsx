@@ -75,16 +75,13 @@ export default function AlbumPage() {
             flexGrow: "1",
           }}
         >
-          <Row className=" row-cols-1 mx-0">
+          <Row className=" row-cols-1">
             {<ArtistBar key={artist._id} header={artist.headerPic} /> || (
               <Spinner animation="grow" variant="dark" />
             )}
           </Row>
-          <Row
-            className="text-left row-cols-1 row-cols-sm-2 row-cols-md-3 mt-5"
-            style={{ margin: "25px" }}
-          >
-            <Col xs={{ span: 10 }} md={{ span: 5 }}>
+          <Row className="text-left  mt-5" style={{ margin: "25px" }}>
+            <Col xs={{ offset: 1, span: 9 }} md={{ offset: 0, span: 5 }}>
               <h2 className="album-album-title">{album.title}</h2>
 
               <h6 className="album-album-title mb-5">
@@ -135,10 +132,14 @@ export default function AlbumPage() {
                 </h6>
               </div>
             </Col>
-            <Col xs={{ span: 12, order: 12 }} md={{ span: 5, order: 1 }}>
+            <Col
+              xs={{ offset: 1, span: 11, order: 12 }}
+              md={{ offset: 0, span: 4, order: 1 }}
+              lg={{ offset: 0, span: 5, order: 1 }}
+            >
               {(
                 <Image
-                  style={{ width: "300px" }}
+                  style={{ maxWidth: "100%" }}
                   key={album._id}
                   className="img-fluid"
                   src={album.cover}
@@ -147,7 +148,11 @@ export default function AlbumPage() {
                 />
               ) || <Spinner animation="grow" variant="dark" />}
             </Col>
-            <Col xs={{ span: 2, order: 1 }} md={{ span: 2, order: 12 }}>
+            <Col
+              xs={{ span: 2, order: 1 }}
+              md={{ span: 3, order: 12 }}
+              lg={{ span: 2, order: 12 }}
+            >
               {(
                 <AlbumSidePanel
                   pic={artist.profilePic}

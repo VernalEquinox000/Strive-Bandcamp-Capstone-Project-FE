@@ -4,7 +4,11 @@ import { Col } from "react-bootstrap";
 export default function ArtistBar({ header }) {
   return (
     <div>
-      <Col className="justify-content-center ">
+      <Col
+        className="justify-content-center "
+        xs={{ offset: 1 }}
+        md={{ offset: 0 }}
+      >
         <img
           style={{
             /* minWidth: "458px",
