@@ -56,17 +56,29 @@ export default function ArtistPage() {
         <>
           {error && <Alert variant="danger">{error}</Alert>}
           {artist && (
-            <div>
+            <Container
+              className="d-flex flex-column justify-content-center align-content-center"
+              style={{
+                marginRight: "auto",
+                marginLeft: "auto",
+                flexGrow: "1",
+              }}
+            >
               <ArtistBar key={artist._id} header={artist.headerPic} />
-            </div>
+            </Container>
           )}
         </>
       )}
       <Container
-      //className="d-flex justify-content-between align-content-center"
+        className="d-flex flex-column justify-content-center align-content-center"
+        style={{
+          marginRight: "auto",
+          marginLeft: "auto",
+          flexGrow: "1",
+        }}
       >
         <Row
-          className="row-cols-1 row-cols-sm-6 row-cols-md-6 artist-row"
+          className="row-cols-6  artist-row mt-5"
           style={{
             width: "100%",
           }}
@@ -114,7 +126,11 @@ export default function ArtistPage() {
               <>
                 {error && <Alert variant="danger">{error}</Alert>}
                 {artist && (
-                  <Col sm={2} className="flex-end">
+                  <Col
+                    xs={{ span: 2, order: 1 }}
+                    md={{ span: 3, order: 12 }}
+                    lg={{ span: 2, order: 12 }}
+                  >
                     <ArtistSidePanel
                       pic={artist.profilePic}
                       name={artist.artistName}
