@@ -116,16 +116,17 @@ export default function ArtistPage() {
               {error && <Alert variant="danger">{error}</Alert>}
               {artist && (
                 <Col
-                  className="ml-auto"
                   xs={{ span: 2, order: 1 }}
                   md={{ span: 3, order: 12 }}
                   lg={{ span: 2, order: 12 }}
+                  style={{ display: "flex" }}
                 >
                   <ArtistSidePanel
                     pic={artist.profilePic}
                     name={artist.artistName}
                     desc={artist.description}
                     link={artist.url[0]}
+                    style={{ alignSelf: "flex-end" }}
                   />
                 </Col>
               )}
