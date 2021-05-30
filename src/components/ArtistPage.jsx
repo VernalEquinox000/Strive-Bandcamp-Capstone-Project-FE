@@ -52,7 +52,7 @@ export default function ArtistPage() {
       }}
     >
       {loader ? (
-        <Row>
+        <Row className=" row-cols-1">
           <Col sm={{ span: 10, offset: 1 }}>
             <Spinner animation="grow" variant="dark" />
           </Col>
@@ -60,18 +60,20 @@ export default function ArtistPage() {
       ) : (
         <>
           {error && <Alert variant="danger">{error}</Alert>}
-          {artist && <ArtistBar key={artist._id} header={artist.headerPic} />}
+          {artist && (
+            <Row className=" row-cols-1">
+              <ArtistBar key={artist._id} header={artist.headerPic} />
+            </Row>
+          )}
         </>
       )}
 
       <Row
         className="row-cols-1 row-cols-sm-2 row-cols-md-5 row-cols-lg-5  artist-row mt-5"
-        style={{
-          width: "100%",
-        }}
+        style={{ margin: "25px" }}
       >
         {loader ? (
-          [0, 1, 2, 3, 4, 5].map((item) => (
+          [0, 1, 2, 3].map((item) => (
             <Col className="col text-center mb-2 mb-lg-0 px-1" key={item}>
               <Spinner animation="grow" variant="dark" />
             </Col>
