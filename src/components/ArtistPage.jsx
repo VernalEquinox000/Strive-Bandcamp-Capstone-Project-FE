@@ -69,12 +69,12 @@ export default function ArtistPage() {
       )}
 
       <Row
-        className="row-cols-1 row-cols-sm-2 row-cols-md-5 row-cols-lg-5  artist-row mt-5"
+        className="row-cols-1 row-cols-sm-2 row-cols-md-5 row-cols-lg-5  d-flex artist-row mt-5"
         style={{ margin: "25px" }}
       >
         {loader ? (
           [0, 1, 2, 3].map((item) => (
-            <Col className="col text-center mb-2 mb-lg-0 px-1" key={item}>
+            <Col className="col text-center mb-2 mb-lg-0" key={item}>
               <Spinner animation="grow" variant="dark" />
             </Col>
           ))
@@ -103,36 +103,25 @@ export default function ArtistPage() {
               ))}
           </>
         )}
-
-        <Col className="col text-center mb-2 mb-lg-0 px-1">
-          {loader ? (
-            <Row>
-              <Col>
-                <Spinner animation="grow" variant="dark" />
+        {loader ? (
+          <Col className="ml-auto">
+            <Spinner animation="grow" variant="dark" />
+          </Col>
+        ) : (
+          <>
+            {error && <Alert variant="danger">{error}</Alert>}
+            {artist && (
+              <Col className="ml-auto">
+                <ArtistSidePanel
+                  pic={artist.profilePic}
+                  name={artist.artistName}
+                  desc={artist.description}
+                  link={artist.url[0]}
+                />
               </Col>
-            </Row>
-          ) : (
-            <>
-              {error && <Alert variant="danger">{error}</Alert>}
-              {artist && (
-                <Col
-                  xs={{ span: 2, order: 1 }}
-                  md={{ span: 3, order: 12 }}
-                  lg={{ span: 2, order: 12 }}
-                  style={{ display: "flex" }}
-                >
-                  <ArtistSidePanel
-                    pic={artist.profilePic}
-                    name={artist.artistName}
-                    desc={artist.description}
-                    link={artist.url[0]}
-                    style={{ alignSelf: "flex-end" }}
-                  />
-                </Col>
-              )}
-            </>
-          )}
-        </Col>
+            )}
+          </>
+        )}
       </Row>
     </Container>
   );
