@@ -68,10 +68,7 @@ export default function ArtistPage() {
         </>
       )}
 
-      <Row
-        className="row-cols-1 row-cols-sm-2 row-cols-md-5 row-cols-lg-5  d-flex artist-row mt-5"
-        style={{ margin: "25px" }}
-      >
+      <Row className="  d-flex artist-row mt-5" style={{ margin: "25px" }}>
         {loader ? (
           [0, 1, 2, 3].map((item) => (
             <Col className="col text-center mb-2 mb-lg-0" key={item}>
@@ -83,7 +80,13 @@ export default function ArtistPage() {
             {error && <Alert variant="danger">{error}</Alert>}
             {artist &&
               artist.albums.map((album) => (
-                <Col className="col text-center mb-2">
+                <Col
+                  className="col text-center mb-2"
+                  xs={{ span: 12 }}
+                  sm={{ span: 6 }}
+                  md={{ span: 3 }}
+                  lg={{ span: 2 }}
+                >
                   <Link
                     to={{
                       pathname: `/artist/${artist._id}/album/${album._id}`,
@@ -111,7 +114,13 @@ export default function ArtistPage() {
           <>
             {error && <Alert variant="danger">{error}</Alert>}
             {artist && (
-              <Col className="ml-auto">
+              <Col
+                className="ml-auto"
+                xs={{ span: 12, order: "last" }}
+                sm={{ span: 6, order: 2 }}
+                md={{ span: 3, order: 4 }}
+                lg={{ span: 2, order: 6 }}
+              >
                 <ArtistSidePanel
                   pic={artist.profilePic}
                   name={artist.artistName}
