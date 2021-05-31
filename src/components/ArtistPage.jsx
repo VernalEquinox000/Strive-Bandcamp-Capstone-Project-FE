@@ -69,68 +69,60 @@ export default function ArtistPage() {
       )}
 
       <Row className="  d-flex artist-row mt-5" style={{ margin: "25px" }}>
-        {loader ? (
-          [0, 1, 2, 3].map((item) => (
-            <Col className="col text-center mb-2 mb-lg-0" key={item}>
-              <Spinner animation="grow" variant="dark" />
-            </Col>
-          ))
-        ) : (
-          <>
-            {error && <Alert variant="danger">{error}</Alert>}
-            {artist &&
-              artist.albums.map((album) => (
-                <Col
-                  className="col text-center mb-2"
-                  xs={{ span: 12 }}
-                  sm={{ span: 6 }}
-                  md={{ span: 3 }}
-                  lg={{ span: 2 }}
-                >
-                  <Link
-                    to={{
-                      pathname: `/artist/${artist._id}/album/${album._id}`,
-                    }}
-                    artist={artist}
-                  >
-                    <div class=" position-relative" key={album._id}>
-                      <img
-                        class="img-fluid rounded"
-                        src={album.cover}
-                        style={{ objectFit: "contain" }}
-                      />
-                      <h6 className="artist-album-title">{album.title}</h6>
-                    </div>
-                  </Link>
+        <Col className="col text-center mb-2" xs={{ span: 10 }}>
+          <Row className="row-cols-1 row-sm-cols-2 row-md-cols-4 row-lg-cols-5">
+            {loader ? (
+              [0, 1, 2, 3].map((item) => (
+                <Col className="col text-center mb-2 mb-lg-0" key={item}>
+                  <Spinner animation="grow" variant="dark" />
                 </Col>
-              ))}
-          </>
-        )}
-        {loader ? (
-          <Col className="ml-auto">
-            <Spinner animation="grow" variant="dark" />
-          </Col>
-        ) : (
-          <>
-            {error && <Alert variant="danger">{error}</Alert>}
-            {artist && (
-              <Col
-                className="ml-auto"
-                xs={{ span: 12, order: "last" }}
-                sm={{ span: 6, order: 2 }}
-                md={{ span: 3, order: 4 }}
-                lg={{ span: 2, order: 6 }}
-              >
-                <ArtistSidePanel
-                  pic={artist.profilePic}
-                  name={artist.artistName}
-                  desc={artist.description}
-                  link={artist.url[0]}
-                />
-              </Col>
+              ))
+            ) : (
+              <>
+                {error && <Alert variant="danger">{error}</Alert>}
+                {artist &&
+                  artist.albums.map((album) => (
+                    <Col xs={2}>
+                      <Link
+                        to={{
+                          pathname: `/artist/${artist._id}/album/${album._id}`,
+                        }}
+                        artist={artist}
+                      >
+                        <div class=" position-relative" key={album._id}>
+                          <img
+                            class="img-fluid rounded"
+                            src={album.cover}
+                            style={{ objectFit: "contain" }}
+                          />
+                          <h6 className="artist-album-title">{album.title}</h6>
+                        </div>
+                      </Link>
+                    </Col>
+                  ))}
+              </>
             )}
-          </>
-        )}
+            {loader ? (
+              <Col className="ml-auto">
+                <Spinner animation="grow" variant="dark" />
+              </Col>
+            ) : (
+              <>
+                {error && <Alert variant="danger">{error}</Alert>}
+                {artist && (
+                  <Col className="ml-auto" xs={{ span: 2 }}>
+                    <ArtistSidePanel
+                      pic={artist.profilePic}
+                      name={artist.artistName}
+                      desc={artist.description}
+                      link={artist.url[0]}
+                    />
+                  </Col>
+                )}
+              </>
+            )}
+          </Row>
+        </Col>
       </Row>
     </Container>
   );
