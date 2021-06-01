@@ -69,8 +69,8 @@ export default function ArtistPage() {
       )}
 
       <Row className="  d-flex artist-row mt-5" style={{ margin: "25px" }}>
-        <Col className="col text-center mb-2" xs={{ span: 10 }}>
-          <Row className="row-cols-1 row-sm-cols-2 row-md-cols-4 row-lg-cols-5">
+        <Col className="col text-center mb-2" xs={10}>
+          <Row>
             {loader ? (
               [0, 1, 2, 3].map((item) => (
                 <Col className="col text-center mb-2 mb-lg-0" key={item}>
@@ -82,7 +82,7 @@ export default function ArtistPage() {
                 {error && <Alert variant="danger">{error}</Alert>}
                 {artist &&
                   artist.albums.map((album) => (
-                    <Col xs={2}>
+                    <Col className="mx-0" sm={10} md={5} lg={3}>
                       <Link
                         to={{
                           pathname: `/artist/${artist._id}/album/${album._id}`,
@@ -102,27 +102,32 @@ export default function ArtistPage() {
                   ))}
               </>
             )}
-            {loader ? (
-              <Col className="ml-auto">
-                <Spinner animation="grow" variant="dark" />
-              </Col>
-            ) : (
-              <>
-                {error && <Alert variant="danger">{error}</Alert>}
-                {artist && (
-                  <Col className="ml-auto" xs={{ span: 2 }}>
-                    <ArtistSidePanel
-                      pic={artist.profilePic}
-                      name={artist.artistName}
-                      desc={artist.description}
-                      link={artist.url[0]}
-                    />
-                  </Col>
-                )}
-              </>
-            )}
           </Row>
         </Col>
+        {loader ? (
+          <Col className="mr-0 ml-auto">
+            <Spinner animation="grow" variant="dark" />
+          </Col>
+        ) : (
+          <>
+            {error && <Alert variant="danger">{error}</Alert>}
+            {artist && (
+              <Col
+                className="ml-auto d-none d-md-block d-lg-block d-xl-block"
+                xs={3}
+                md={2}
+                style={{ border: "2px solid red" }}
+              >
+                <ArtistSidePanel
+                  pic={artist.profilePic}
+                  name={artist.artistName}
+                  desc={artist.description}
+                  link={artist.url[0]}
+                />
+              </Col>
+            )}
+          </>
+        )}
       </Row>
     </Container>
   );
